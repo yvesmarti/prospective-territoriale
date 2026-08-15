@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prospective territoriale — Guide d'acculturation | Normandie Cabourg Pays d'Auge</title>
+<style>
+:root{
+  --encre:#2C3831;
+  --texte:#3E4A44;
+  --papier:#E7EBE1;
+  --carte:#F7F9F4;
+  --nav-fond:#DFE5D9;
+  --rouge:#A03A32;
+  --rouge-pale:#EFE3DF;
+  --sauge:#9CAA84;
+  --sauge-pale:#E2E8D8;
+  --ardoise:#456A7D;
+  --ardoise-pale:#E0E8EC;
+  --trait:#CBD3C3;
+  --gris:#6E7A72;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:"Helvetica Neue",Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --nav:290px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:90px;}
+body{
+  margin:0;
+  background:var(--papier);
+  color:var(--texte);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Barre d'échelle temporelle (signature) ---------- */
+#echelle{
+  position:fixed;top:0;left:0;right:0;height:34px;
+  background:var(--carte);
+  border-bottom:1px solid var(--trait);
+  z-index:60;
+  display:flex;align-items:flex-end;
+  font-family:var(--sans);
+}
+#echelle .jauge{
+  position:absolute;left:0;bottom:0;height:3px;width:0;
+  background:var(--rouge);
+  transition:width .08s linear;
+}
+#echelle .graduations{
+  position:relative;width:100%;height:100%;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 14px 4px 14px;
+}
+#echelle .tick{
+  font-size:9.5px;letter-spacing:1.4px;color:var(--gris);
+  padding-bottom:5px;position:relative;
+}
+#echelle .tick::after{
+  content:"";position:absolute;left:50%;bottom:0;width:1px;height:5px;background:var(--trait);
+}
+#echelle .tick:first-child::after{left:0;}
+#echelle .tick:last-child::after{left:auto;right:0;}
+
+/* ---------- Navigation ---------- */
+#bouton-nav{
+  display:none;
+  position:fixed;top:44px;left:12px;z-index:55;
+  font-family:var(--sans);font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  background:var(--encre);color:#fff;border:0;border-radius:2px;
+  padding:9px 14px;cursor:pointer;
+}
+
+nav#sommaire{
+  position:fixed;top:34px;bottom:0;left:0;width:var(--nav);
+  background:var(--nav-fond);
+  border-right:1px solid var(--trait);
+  overflow-y:auto;
+  padding:26px 0 60px 0;
+  z-index:50;
+  font-family:var(--sans);
+}
+nav#sommaire .marque{
+  padding:0 24px 20px 24px;border-bottom:1px solid var(--trait);margin-bottom:16px;
+}
+nav#sommaire .marque .nom{
+  font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--rouge);font-weight:700;
+}
+nav#sommaire .marque .titre{
+  font-family:var(--serif);font-size:19px;line-height:1.25;margin-top:8px;
+}
+nav#sommaire .partie{
+  font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gris);
+  padding:20px 24px 6px 24px;
+}
+nav#sommaire a{
+  display:block;padding:5px 24px 5px 24px;
+  color:var(--encre);text-decoration:none;font-size:13.5px;line-height:1.35;
+  border-left:2px solid transparent;
+}
+nav#sommaire a .num{color:var(--gris);font-variant-numeric:tabular-nums;margin-right:7px;font-size:12px;}
+nav#sommaire a:hover{background:var(--sauge-pale);}
+nav#sommaire a.actif{border-left-color:var(--rouge);background:var(--rouge-pale);font-weight:600;}
+nav#sommaire a:focus-visible{outline:2px solid var(--ardoise);outline-offset:-2px;}
+
+/* ---------- Contenu ---------- */
+main{
+  margin-left:var(--nav);
+  padding:34px 0 120px 0;
+}
+.colonne{max-width:790px;margin:0 auto;padding:0 40px;}
+
+/* Ouverture */
+header.ouverture{
+  padding:70px 0 54px 0;
+  border-bottom:2px solid var(--rouge);
+  margin-bottom:54px;
+}
+header.ouverture .surtitre{
+  font-family:var(--sans);font-size:10.5px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--rouge);font-weight:700;margin-bottom:22px;
+}
+header.ouverture h1{
+  font-size:46px;line-height:1.08;margin:0 0 20px 0;font-weight:400;letter-spacing:-.5px;
+}
+header.ouverture .chapeau{
+  font-size:19px;line-height:1.55;color:var(--texte);max-width:620px;
+}
+header.ouverture .meta{
+  margin-top:32px;padding-top:18px;border-top:1px solid var(--trait);
+  font-family:var(--sans);font-size:11.5px;letter-spacing:.4px;color:var(--gris);
+}
+
+/* Titres */
+h2{
+  font-family:var(--sans);
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:700;
+  color:var(--rouge);
+  margin:0 0 34px 0;padding-bottom:10px;border-bottom:1px solid var(--rouge);
+}
+.partie-ouverture{
+  margin:84px 0 44px 0;padding:30px 0 0 0;border-top:2px solid var(--trait);
+}
+.partie-ouverture .lettre{
+  font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gris);
+}
+.partie-ouverture h2{
+  font-family:var(--serif);font-size:32px;letter-spacing:-.3px;text-transform:none;
+  color:var(--encre);border:0;padding:0;margin:8px 0 10px 0;font-weight:400;
+}
+.partie-ouverture p{color:var(--gris);font-size:16px;margin:0;}
+
+section.chapitre{margin:0 0 62px 0;}
+section.chapitre > h3{
+  color:var(--encre);
+  font-size:27px;line-height:1.2;font-weight:400;margin:0 0 6px 0;letter-spacing:-.3px;
+  display:flex;gap:14px;align-items:baseline;
+}
+section.chapitre > h3 .num{
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:1px;color:var(--rouge);
+  border:1px solid var(--rouge);border-radius:2px;padding:3px 7px;flex:0 0 auto;
+  transform:translateY(-4px);
+}
+section.chapitre > .accroche{
+  color:var(--gris);font-size:16.5px;margin:0 0 26px 0;padding-left:44px;
+}
+h4{
+  font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.2px;
+  margin:34px 0 10px 0;color:var(--encre);
+}
+h4 .rep{color:var(--sauge);margin-right:8px;font-variant-numeric:tabular-nums;}
+h5{
+  font-family:var(--sans);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;
+  margin:24px 0 8px 0;color:var(--gris);font-weight:700;
+}
+
+p{margin:0 0 15px 0;}
+a{color:var(--ardoise);}
+strong{font-weight:600;}
+em{font-style:italic;}
+ul,ol{margin:0 0 16px 0;padding-left:22px;}
+li{margin-bottom:6px;}
+ul.serre li,ol.serre li{margin-bottom:2px;}
+code{
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;
+  background:var(--sauge-pale);padding:1px 5px;border-radius:2px;
+}
+
+/* Encadrés */
+.bloc{
+  border:1px solid var(--trait);background:var(--carte);
+  padding:20px 24px;margin:26px 0;border-radius:2px;
+}
+.bloc .etiquette{
+  font-family:var(--sans);font-size:9.5px;letter-spacing:2px;text-transform:uppercase;
+  font-weight:700;margin-bottom:10px;display:block;
+}
+.bloc p:last-child,.bloc ul:last-child,.bloc ol:last-child{margin-bottom:0;}
+.bloc.retenir{border-left:3px solid var(--sauge);background:var(--sauge-pale);}
+.bloc.retenir .etiquette{color:#67704B;}
+.bloc.piege{border-left:3px solid var(--rouge);background:var(--rouge-pale);}
+.bloc.piege .etiquette{color:var(--rouge);}
+.bloc.ncpa{border-left:3px solid var(--ardoise);background:var(--ardoise-pale);}
+.bloc.ncpa .etiquette{color:var(--ardoise);}
+.bloc.action{border-left:3px solid var(--encre);}
+.bloc.action .etiquette{color:var(--encre);}
+
+/* Citation */
+blockquote{
+  margin:24px 0;padding:4px 0 4px 22px;border-left:2px solid var(--rouge);
+  font-size:19px;line-height:1.5;color:var(--texte);
+}
+blockquote cite{
+  display:block;margin-top:10px;font-family:var(--sans);font-size:11.5px;font-style:normal;
+  letter-spacing:.5px;color:var(--gris);
+}
+
+/* Tableaux */
+.tableau{overflow-x:auto;margin:24px 0;}
+table{
+  border-collapse:collapse;width:100%;font-family:var(--sans);font-size:13px;background:var(--carte);
+}
+th{
+  text-align:left;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--gris);
+  border-bottom:1.5px solid var(--sauge);padding:9px 11px;vertical-align:bottom;font-weight:700;
+}
+td{border-bottom:1px solid var(--trait);padding:9px 11px;vertical-align:top;line-height:1.45;}
+tbody tr:hover{background:var(--sauge-pale);}
+td.prio{white-space:nowrap;font-weight:700;}
+.p1{color:#4C7A4C;}
+.p2{color:#B07D1E;}
+.p3{color:var(--ardoise);}
+
+/* Chaîne / flux */
+.chaine{
+  font-family:var(--sans);font-size:12.5px;line-height:2.1;
+  background:var(--carte);border:1px solid var(--trait);padding:18px 22px;margin:22px 0;
+  border-radius:2px;
+}
+.chaine .maillon{
+  display:inline-block;border:1px solid var(--trait);border-radius:2px;
+  padding:3px 9px;margin:3px 0;background:var(--papier);
+}
+.chaine .fleche{color:var(--rouge);margin:0 7px;font-weight:700;}
+
+/* Grille de cartes */
+.grille{display:grid;gap:14px;margin:24px 0;}
+.grille.deux{grid-template-columns:1fr 1fr;}
+.grille.trois{grid-template-columns:repeat(3,1fr);}
+.fiche{
+  background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--sauge);
+  padding:15px 17px;border-radius:2px;
+}
+.fiche h6{
+  font-family:var(--sans);font-size:13px;margin:0 0 6px 0;letter-spacing:.2px;
+}
+.fiche p{font-size:14.5px;margin:0;color:var(--texte);line-height:1.5;}
+.fiche.rouge{border-top-color:var(--rouge);}
+.fiche.bleu{border-top-color:var(--ardoise);}
+
+/* Etapes numérotées */
+ol.etapes{list-style:none;padding:0;counter-reset:etape;margin:24px 0;}
+ol.etapes > li{
+  counter-increment:etape;position:relative;padding:0 0 20px 52px;margin:0;
+  border-left:1px solid var(--trait);
+}
+ol.etapes > li:last-child{border-left-color:transparent;padding-bottom:0;}
+ol.etapes > li::before{
+  content:counter(etape,decimal-leading-zero);
+  position:absolute;left:-15px;top:0;
+  font-family:var(--sans);font-size:11px;font-weight:700;color:#fff;background:var(--sauge);
+  width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+ol.etapes > li .titre-etape{
+  font-family:var(--sans);font-weight:700;font-size:14px;display:block;margin-bottom:5px;padding-top:5px;
+}
+
+/* Glossaire */
+dl.glossaire{margin:22px 0;}
+dl.glossaire dt{
+  font-family:var(--sans);font-weight:700;font-size:14px;margin-top:16px;
+}
+dl.glossaire dd{margin:3px 0 0 0;color:var(--texte);font-size:16px;}
+
+.note{font-size:14.5px;color:var(--gris);font-style:italic;}
+hr.filet{border:0;border-top:1px solid var(--trait);margin:40px 0;}
+
+footer.pied{
+  margin-top:80px;padding-top:24px;border-top:2px solid var(--trait);
+  font-family:var(--sans);font-size:12px;color:var(--gris);line-height:1.7;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1180px){
+  :root{--nav:250px;}
+  nav#sommaire a{font-size:12.8px;padding-left:18px;padding-right:16px;}
+  nav#sommaire .marque,nav#sommaire .partie{padding-left:18px;padding-right:16px;}
+  .colonne{padding:0 32px;}
+}
+@media (max-width:960px){
+  :root{--nav:212px;}
+  nav#sommaire a{font-size:12.2px;line-height:1.3;}
+  nav#sommaire .marque .titre{font-size:16px;}
+  header.ouverture h1{font-size:36px;}
+  .colonne{padding:0 26px;}
+  .grille.trois{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  :root{--nav:0px;}
+  #bouton-nav{display:block;}
+  nav#sommaire{
+    transform:translateX(-105%);transition:transform .22s ease;width:280px;
+    box-shadow:0 0 40px rgba(0,0,0,.14);
+  }
+  nav#sommaire.ouvert{transform:translateX(0);}
+  main{margin-left:0;padding-top:86px;}
+  .colonne{padding:0 20px;}
+  header.ouverture h1{font-size:31px;}
+  header.ouverture .chapeau{font-size:17px;}
+  .grille.deux,.grille.trois{grid-template-columns:1fr;}
+  section.chapitre > .accroche{padding-left:0;}
+  section.chapitre > h3{font-size:22px;}
+}
+
+@media print{
+  #echelle,nav#sommaire,#bouton-nav{display:none;}
+  main{margin:0;padding:0;}
+  .colonne{max-width:none;padding:0;}
+  body{background:#fff;font-size:11pt;}
+  section.chapitre{page-break-inside:auto;}
+  section.chapitre > h3,h4{page-break-after:avoid;}
+  .bloc,table,.chaine{page-break-inside:avoid;}
+  .partie-ouverture{page-break-before:always;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<div id="echelle">
+  <div class="graduations">
+    <span class="tick">2026</span>
+    <span class="tick">2030</span>
+    <span class="tick">2035</span>
+    <span class="tick">2040</span>
+    <span class="tick">2045</span>
+  </div>
+  <div class="jauge" id="jauge"></div>
+</div>
+
+<button id="bouton-nav" aria-expanded="false" aria-controls="sommaire">Sommaire</button>
+
+<nav id="sommaire" aria-label="Sommaire du guide">
+  <div class="marque">
+    <div class="nom">Normandie Cabourg Pays d'Auge</div>
+    <div class="titre">Prospective territoriale<br>Guide d'acculturation</div>
+  </div>
+
+  <div class="partie">Préambule</div>
+  <a href="#preambule"><span class="num">00</span>Comment utiliser ce guide</a>
+
+  <div class="partie">Partie I · Comprendre</div>
+  <a href="#ch1"><span class="num">01</span>Ce qu'est, et n'est pas, la prospective</a>
+  <a href="#ch2"><span class="num">02</span>Pourquoi à l'échelle de la NCPA</a>
+  <a href="#ch3"><span class="num">03</span>La grammaire prospective</a>
+  <a href="#ch4"><span class="num">04</span>Les pièges et les garde-fous</a>
+
+  <div class="partie">Partie II · Faire</div>
+  <a href="#ch5"><span class="num">05</span>Cadrer avant de commencer</a>
+  <a href="#ch6"><span class="num">06</span>La démarche en sept étapes</a>
+  <a href="#ch7"><span class="num">07</span>Construire des scénarios utiles</a>
+  <a href="#ch8"><span class="num">08</span>Animer : ateliers et outils</a>
+
+  <div class="partie">Partie III · La donnée</div>
+  <a href="#ch9"><span class="num">09</span>Principes d'une prospective par la donnée</a>
+  <a href="#ch10"><span class="num">10</span>Les huit familles de questions</a>
+  <a href="#ch11"><span class="num">11</span>Les sources à mobiliser</a>
+  <a href="#ch12"><span class="num">12</span>Croiser : les chaînes causales</a>
+  <a href="#ch13"><span class="num">13</span>Construire la base prospective</a>
+  <a href="#ch14"><span class="num">14</span>Le tableau de bord prospectif</a>
+
+  <div class="partie">Partie IV · Appliquer</div>
+  <a href="#ch15"><span class="num">15</span>Le profil de la NCPA</a>
+  <a href="#ch16"><span class="num">16</span>Cas pratique : les déchets en 2040</a>
+  <a href="#ch17"><span class="num">17</span>Feuille de route</a>
+
+  <div class="partie">Annexes</div>
+  <a href="#glossaire"><span class="num">A</span>Glossaire</a>
+  <a href="#ressources"><span class="num">B</span>Sources et bibliographie</a>
+</nav>
+
+<main>
+<div class="colonne">
+
+<header class="ouverture">
+  <div class="surtitre">Communauté de communes Normandie Cabourg Pays d'Auge</div>
+  <h1>Anticiper les besoins<br>du territoire</h1>
+  <p class="chapeau">Guide d'acculturation à la prospective territoriale : les principes, la méthode, les données à mobiliser, et par où commencer concrètement dans une intercommunalité littorale de 38 communes.</p>
+  <div class="meta">Document de travail interne · Version 1 · Août 2026 · À enrichir au fil des travaux</div>
+</header>
+
+<!-- ============ PRÉAMBULE ============ -->
+<section class="chapitre" id="preambule">
+  <h3><span class="num">00</span>Comment utiliser ce guide</h3>
+  <p class="accroche">Un document de référence, pas un rapport à lire d'une traite.</p>
+
+  <p>Ce guide répond à deux questions distinctes, volontairement séparées.</p>
+  <div class="grille deux">
+    <div class="fiche">
+      <h6>« De quoi parle-t-on ? »</h6>
+      <p>Les parties I et II donnent le socle conceptuel et méthodologique : vocabulaire, étapes, animation. Elles servent à se former et à faire adhérer des élus ou des collègues.</p>
+    </div>
+    <div class="fiche rouge">
+      <h6>« Par où je commence lundi ? »</h6>
+      <p>Les parties III et IV sont opérationnelles : quelles données, où les trouver, comment les assembler, et une feuille de route sur 90 jours puis 12 mois.</p>
+    </div>
+  </div>
+
+  <h4>Trois usages possibles</h4>
+  <ul>
+    <li><strong>Se former</strong> : lire les parties I et II dans l'ordre (environ une heure).</li>
+    <li><strong>Convaincre</strong> : les chapitres 1, 2, 4 et 17 fournissent la matière d'une note ou d'une présentation à la direction générale ou au bureau communautaire.</li>
+    <li><strong>Travailler</strong> : les chapitres 10 à 14 sont des check-lists de données ; le chapitre 16 est un cas concret déroulé de bout en bout.</li>
+  </ul>
+
+  <div class="bloc retenir">
+    <span class="etiquette">À retenir</span>
+    <p>La prospective ne demande pas un budget d'étude pour démarrer. Elle demande d'abord une question de décision claire, un mandat politique, et un peu de discipline méthodologique. Le reste s'ajoute progressivement.</p>
+  </div>
+
+  <p class="note">Les encadrés bleus signalent une application directe au territoire de la NCPA ; les encadrés rouges signalent un piège fréquent ; les encadrés verts résument l'essentiel d'une section.</p>
+</section>
+
+<!-- ============ PARTIE I ============ -->
+<div class="partie-ouverture">
+  <div class="lettre">Partie I</div>
+  <h2>Comprendre</h2>
+  <p>Ce que recouvre la prospective territoriale, pourquoi elle a du sens à l'échelle d'un EPCI, et le vocabulaire indispensable pour en parler sans confusion.</p>
+</div>
+
+<section class="chapitre" id="ch1">
+  <h3><span class="num">01</span>Ce qu'est, et n'est pas, la prospective</h3>
+  <p class="accroche">Une discipline d'aide à la décision, pas un exercice de divination.</p>
+
+  <h4><span class="rep">1.1</span>Une définition simple</h4>
+  <p>La prospective n'a pas pour objet de <em>prédire</em> l'avenir, mais d'aider à le <em>construire</em>. Elle invite à considérer le futur comme quelque chose à faire, à bâtir, plutôt que comme une chose déjà décidée dont il faudrait percer le mystère. C'est le point de départ posé par Hugues de Jouvenel et repris par toute la littérature française sur le sujet.</p>
+  <p>Appliquée à un territoire, elle consiste à :</p>
+  <div class="chaine">
+    <span class="maillon">Observer les dynamiques passées</span><span class="fleche">→</span>
+    <span class="maillon">Comprendre les tendances actuelles</span><span class="fleche">→</span>
+    <span class="maillon">Identifier les facteurs de changement</span><span class="fleche">→</span>
+    <span class="maillon">Construire plusieurs futurs possibles</span><span class="fleche">→</span>
+    <span class="maillon">Anticiper les conséquences pour l'action publique</span>
+  </div>
+
+  <h4><span class="rep">1.2</span>Prévision, projection, prospective : trois choses différentes</h4>
+  <p>C'est la confusion la plus coûteuse. Elle produit des débats stériles en réunion.</p>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Terme</th><th>Ce que ça dit</th><th>Exemple</th><th>Limite</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Prévision</strong></td>
+        <td>Ce qui va probablement se passer, avec une probabilité associée</td>
+        <td>Le tonnage d'ordures ménagères du mois prochain</td>
+        <td>Ne vaut que sur le court terme et en système stable</td>
+      </tr>
+      <tr>
+        <td><strong>Projection</strong></td>
+        <td>« Si telles hypothèses se vérifient, alors voici la trajectoire »</td>
+        <td>La population en 2040 selon le modèle Omphale de l'Insee</td>
+        <td>Ce n'est pas une prédiction : tout dépend des hypothèses retenues</td>
+      </tr>
+      <tr>
+        <td><strong>Prospective</strong></td>
+        <td>« Quels futurs sont possibles ? Qu'est-ce qui pourrait faire diverger les trajectoires ? Que faisons-nous dès maintenant ? »</td>
+        <td>Quatre scénarios contrastés d'évolution du territoire à 2040</td>
+        <td>Ne donne pas un chiffre unique : elle donne des marges de manœuvre</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="bloc piege">
+    <span class="etiquette">Piège fréquent</span>
+    <p>Prendre une projection démographique pour une vérité future. Une projection Insee à 2050 n'annonce pas le futur : elle traduit des hypothèses de fécondité, de mortalité et de migrations. Changez les hypothèses migratoires d'un territoire littoral attractif, et le résultat bascule. D'où la règle : <strong>toujours travailler avec plusieurs scénarios plutôt qu'avec un seul chiffre.</strong></p>
+  </div>
+
+  <h4><span class="rep">1.3</span>Cinq attitudes possibles face à l'avenir</h4>
+  <p>La typologie classique aide à situer où se trouve aujourd'hui une collectivité :</p>
+  <ul>
+    <li><strong>Passive</strong> : subir le changement.</li>
+    <li><strong>Réactive</strong> : attendre le choc pour réagir (le mode de fonctionnement le plus répandu).</li>
+    <li><strong>Préactive</strong> : se préparer aux changements prévisibles.</li>
+    <li><strong>Proactive</strong> : agir pour provoquer les changements souhaités.</li>
+    <li><strong>Prospective</strong> : combiner préactivité et proactivité — se préparer <em>et</em> provoquer.</li>
+  </ul>
+  <p>Une intercommunalité gestionnaire de services (déchets, eau, mobilités) est structurellement en mode réactif : elle répond à la demande constatée. La prospective consiste à passer de <em>« nous installons un équipement parce que la demande existe »</em> à <em>« nous identifions aujourd'hui les secteurs où la demande risque d'apparaître demain »</em>.</p>
+
+  <h4><span class="rep">1.4</span>L'attitude prospective</h4>
+  <p>Gaston Berger (1958), complété par Michel Godet, résume la posture à adopter :</p>
+  <div class="grille trois">
+    <div class="fiche"><h6>Voir loin</h6><p>Aller au-delà de l'extrapolation du passé récent. Replacer les actions dans une perspective d'ensemble et de long terme.</p></div>
+    <div class="fiche"><h6>Voir large</h6><p>Approche systémique : dégager les liens et les articulations, dépasser les vues étroites de chaque spécialiste.</p></div>
+    <div class="fiche"><h6>Analyser en profondeur</h6><p>Chercher les logiques profondes du territoire, pas seulement les symptômes visibles.</p></div>
+    <div class="fiche"><h6>Prendre des risques</h6><p>Accepter de formuler des hypothèses fortes et discutables plutôt que des banalités consensuelles.</p></div>
+    <div class="fiche"><h6>Penser à l'homme</h6><p>Les habitants, leurs parcours de vie et leurs pratiques réelles, pas seulement les flux et les tonnages.</p></div>
+    <div class="fiche"><h6>Penser ensemble</h6><p>La qualité d'une réflexion prospective tient largement à la diversité de ceux qui y participent.</p></div>
+  </div>
+
+  <h4><span class="rep">1.5</span>Le triangle grec : anticipation, action, appropriation</h4>
+  <p>Formule de Godet, très utile pour expliquer pourquoi certaines démarches échouent :</p>
+  <blockquote>
+    Le bleu de l'anticipation ne se transforme en vert de l'action qu'avec le jaune de l'appropriation par les acteurs concernés.
+    <cite>Michel Godet, <em>La prospective territoriale</em>, Cahiers du LIPSOR n°7, 2007</cite>
+  </blockquote>
+  <p>Deux erreurs symétriques en découlent :</p>
+  <ul>
+    <li><strong>La prospective d'experts sans appropriation</strong> : un bureau d'études produit un rapport brillant que personne ne s'approprie. « C'est une mauvaise idée que de vouloir imposer une bonne idée. »</li>
+    <li><strong>La participation sans expertise</strong> : sans matière cognitive, la prospective participative « tourne à vide et en rond sur le présent ». Le consensus du moment est souvent un accord tacite pour que rien ne change.</li>
+  </ul>
+
+  <div class="bloc retenir">
+    <span class="etiquette">À retenir</span>
+    <p>La prospective est participative, mais la stratégie qui en découle revient aux élus. Confondre les deux — faire voter le futur — mène à la démagogie ou à l'immobilisme. Le rôle de la démarche est d'éclairer un arbitrage, pas de le remplacer.</p>
+  </div>
+</section>
+
+<section class="chapitre" id="ch2">
+  <h3><span class="num">02</span>Pourquoi à l'échelle de la NCPA</h3>
+  <p class="accroche">L'EPCI est souvent le bon niveau : ni trop petit pour voir les systèmes, ni trop grand pour agir.</p>
+
+  <h4><span class="rep">2.1</span>Le bassin de vie dépasse les limites communales</h4>
+  <p>Les habitants d'un territoire comme la NCPA habitent une commune, travaillent parfois dans une autre, font leurs courses dans une troisième et accèdent à un service de santé dans une quatrième. Les systèmes qui structurent leur vie quotidienne — habitat, emploi, mobilités, eau, foncier, équipements — ne s'arrêtent à aucune limite administrative.</p>
+  <p>La prospective à l'échelle intercommunale sert donc à construire une vision commune <strong>sans effacer les réalités propres à chaque commune</strong>. C'est un point d'attention politique majeur : une démarche perçue comme une reprise en main par l'intercommunalité échoue.</p>
+
+  <h4><span class="rep">2.2</span>Ce que la prospective apporte concrètement</h4>
+  <ul>
+    <li><strong>Éviter les investissements mal calibrés.</strong> Un équipement dimensionné sur la demande d'aujourd'hui peut être surdimensionné ou saturé dans quinze ans.</li>
+    <li><strong>Repérer les choix irréversibles.</strong> Un foncier artificialisé, un réseau enterré, un contrat de délégation de vingt ans : ces décisions engagent au-delà du mandat.</li>
+    <li><strong>Rendre les arbitrages explicites.</strong> Passer de « on a toujours fait comme ça » à « voici ce qu'on suppose, et voici ce qui se passerait si l'hypothèse est fausse ».</li>
+    <li><strong>Créer un langage commun</strong> entre communes, services et partenaires.</li>
+  </ul>
+
+  <h4><span class="rep">2.3</span>Trois horizons de temps à articuler</h4>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Horizon</th><th>Nature du travail</th><th>Ce qu'on y regarde</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0 – 3 ans</strong><br>Veille et pilotage</td><td>Suivi d'indicateurs, alertes</td><td>Tensions, usage des services, signaux d'alerte, incidents</td></tr>
+      <tr><td><strong>3 – 10 ans</strong><br>Programmation</td><td>Documents de planification, PPI</td><td>Équipements, habitat, réseaux, compétences, financements</td></tr>
+      <tr><td><strong>10 – 20 ans</strong><br>Prospective stratégique</td><td>Scénarios, ruptures</td><td>Vieillissement, climat, ressources, emploi, mobilités, fractures territoriales</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Les documents de programmation répondent aux mandats. La prospective, elle, teste les choix irréversibles : elle vérifie que les décisions de court terme restent compatibles avec les transformations de long terme.</p>
+
+  <h4><span class="rep">2.4</span>S'articuler avec l'existant, ne pas créer un objet parallèle</h4>
+  <p>La NCPA produit déjà des documents qui contiennent, souvent sans le dire, des hypothèses sur l'avenir : documents d'urbanisme (PLU/PLUi, SCoT), PCAET, PLH, programme local de prévention des déchets, schémas de mobilité, projet de territoire. Chacun repose sur une projection de population ou d'activité.</p>
+  <div class="bloc action">
+    <span class="etiquette">Premier réflexe utile</span>
+    <p>Faire l'inventaire des hypothèses d'avenir déjà écrites dans les documents existants de la collectivité, et vérifier si elles sont cohérentes entre elles. Il est fréquent qu'un PLH et un PCAET reposent sur des trajectoires démographiques différentes. C'est un excellent point d'entrée : concret, peu coûteux, et immédiatement parlant pour la direction générale.</p>
+  </div>
+
+  <h4><span class="rep">2.5</span>Une boucle, pas un rapport</h4>
+  <p>La prospective devient utile quand elle alimente les décisions année après année. Le cycle à installer :</p>
+  <ol class="etapes">
+    <li><span class="titre-etape">Observer</span>Données statistiques, données de gestion, savoirs d'usage des agents de terrain.</li>
+    <li><span class="titre-etape">Interpréter</span>Tendances, tensions, signaux faibles.</li>
+    <li><span class="titre-etape">Explorer</span>Futurs plausibles, scénarios contrastés.</li>
+    <li><span class="titre-etape">Choisir</span>Options et arbitrages politiques.</li>
+    <li><span class="titre-etape">Suivre</span>Indicateurs de bascule : ceux qui indiquent qu'on change de scénario.</li>
+    <li><span class="titre-etape">Réviser</span>Mise à jour des hypothèses et des trajectoires.</li>
+  </ol>
+  <div class="bloc piege">
+    <span class="etiquette">Point de vigilance</span>
+    <p>Un tableau de bord reste purement rétrospectif s'il n'est pas relié à des hypothèses, des seuils d'alerte et des choix possibles. Compter des tonnages ne fait pas de la prospective.</p>
+  </div>
+</section>
+
+<section class="chapitre" id="ch3">
+  <h3><span class="num">03</span>La grammaire prospective</h3>
+  <p class="accroche">Huit mots à maîtriser. Ils structurent tout le reste de la démarche.</p>
+
+  <p>La littérature parle de « grammaire prospective » : un petit ensemble de notions qui permettent de décrire proprement un futur. Les employer correctement fait gagner un temps considérable en atelier.</p>
+
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Notion</th><th>Définition</th><th>Exemple possible sur un territoire littoral</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tendance lourde</strong></td><td>Mouvement de fond, déjà à l'œuvre, difficile à infléchir à court terme</td><td>Vieillissement de la population, desserrement des ménages</td></tr>
+      <tr><td><strong>Invariant</strong></td><td>Élément stable quel que soit le scénario</td><td>La géographie du trait de côte, la structure du réseau routier</td></tr>
+      <tr><td><strong>Germe de changement</strong></td><td>Phénomène émergent, encore marginal, susceptible de devenir structurant</td><td>Le télétravail transformant des résidences secondaires en résidences principales</td></tr>
+      <tr><td><strong>Signal faible</strong></td><td>Information ténue, peu visible, annonciatrice d'une rupture</td><td>Refus d'assurance sur des biens exposés à l'érosion côtière</td></tr>
+      <tr><td><strong>Rupture</strong></td><td>Discontinuité, redoutée ou souhaitée, qui change les règles du jeu</td><td>Un événement de submersion majeur, une réforme du financement des collectivités</td></tr>
+      <tr><td><strong>Variable clé</strong></td><td>Facteur à la fois très influent sur le système et incertain</td><td>L'attractivité résidentielle des actifs, le coût de l'énergie</td></tr>
+      <tr><td><strong>Jeu d'acteurs</strong></td><td>Stratégies, alliances et conflits entre acteurs qui pèsent sur l'avenir</td><td>Communes, Département, Région, État, opérateurs, propriétaires, associations</td></tr>
+      <tr><td><strong>Enjeu / question clé</strong></td><td>Ce qui est en jeu et sur quoi il faudra trancher</td><td>« Comment garantir l'accès aux services d'une population plus âgée et plus dispersée ? »</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4><span class="rep">3.1</span>Deux types de scénarios à ne pas mélanger</h4>
+  <div class="grille deux">
+    <div class="fiche">
+      <h6>Scénario exploratoire</h6>
+      <p>Part du présent et déroule des enchaînements plausibles. Répond à : <em>que peut-il advenir ?</em> Il n'est ni souhaitable ni souhaité — il est possible.</p>
+    </div>
+    <div class="fiche rouge">
+      <h6>Scénario normatif</h6>
+      <p>Part d'un futur voulu et remonte vers le présent pour identifier le chemin. Répond à : <em>que voulons-nous, et comment y aller ?</em> C'est une vision politique.</p>
+    </div>
+  </div>
+  <div class="bloc piege">
+    <span class="etiquette">Piège fréquent</span>
+    <p>Le scénario souhaitable déguisé en scénario probable. C'est le biais le plus courant et le plus dangereux : on présente comme « tendanciel » un futur qui arrange tout le monde. Règle : identifier explicitement, dans tout jeu de scénarios, lequel relève du souhait politique.</p>
+  </div>
+
+  <h4><span class="rep">3.2</span>Trois questions qui structurent toute démarche</h4>
+  <ol>
+    <li><strong>Que peut-il advenir ?</strong> (prospective exploratoire)</li>
+    <li><strong>Que voulons-nous faire ?</strong> (prospective normative, vision)</li>
+    <li><strong>Que allons-nous faire, et comment ?</strong> (stratégie et plan d'actions)</li>
+  </ol>
+  <p>Une quatrième question, préalable et souvent négligée : <strong>« qui sommes-nous ? »</strong> — l'identité du territoire, ses compétences réelles, les leçons de ses échecs et de ses réussites passées.</p>
+</section>
+
+<section class="chapitre" id="ch4">
+  <h3><span class="num">04</span>Les pièges et les garde-fous</h3>
+  <p class="accroche">Les biais ne sont pas des fautes individuelles : ils sont ordinaires et prévisibles. On les compense par la méthode.</p>
+
+  <h4><span class="rep">4.1</span>Trois familles de biais</h4>
+  <div class="grille trois">
+    <div class="fiche rouge">
+      <h6>Sélection de l'information</h6>
+      <p>Effet de récence, heuristique de disponibilité, effet d'ancrage, biais de confirmation.<br><br><strong>Risque :</strong> surestimer le visible et conforter une idée déjà installée.</p>
+    </div>
+    <div class="fiche rouge">
+      <h6>Dynamique de groupe</h6>
+      <p>Soumission à l'autorité, conformisme, sélection opportuniste des données, malédiction de la connaissance.<br><br><strong>Risque :</strong> consensus trop rapide ; communes ou publics peu entendus.</p>
+    </div>
+    <div class="fiche rouge">
+      <h6>Rapport à l'avenir</h6>
+      <p>Biais de statu quo, aversion à la perte, optimisme irréaliste, scénario désirable déguisé.<br><br><strong>Risque :</strong> refuser les ruptures, sous-estimer les vulnérabilités.</p>
+    </div>
+  </div>
+
+  <h4><span class="rep">4.2</span>Idées reçues à traiter en début de démarche</h4>
+  <ul>
+    <li>« La prospective, c'est de la futurologie » — non : c'est un exercice d'aide à la décision documenté.</li>
+    <li>« Ça ne sert à rien, on ne peut pas prévoir » — précisément : on ne prévoit pas, on se prépare à plusieurs futurs.</li>
+    <li>« C'est réservé aux grandes agglomérations » — les territoires de taille moyenne, littoraux ou ruraux, sont ceux où les marges de manœuvre se referment le plus vite.</li>
+    <li>« Il faut d'abord toutes les données » — non : il faut d'abord une bonne question.</li>
+    <li>« C'est un exercice technique » — non : sans portage politique, la démarche reste lettre morte.</li>
+  </ul>
+
+  <h4><span class="rep">4.3</span>Trop de scénarios, pas assez de projets</h4>
+  <p>Godet met en garde contre le recours systématique aux scénarios au détriment des leçons de l'histoire locale et de la comparaison entre territoires. Un scénario n'a d'intérêt que s'il est <strong>pertinent</strong> (il pose les bonnes questions), <strong>cohérent</strong> et <strong>vraisemblable</strong>. Le développement d'un territoire est d'abord le fruit de son dynamisme propre et de la multiplicité des initiatives locales.</p>
+
+  <h4><span class="rep">4.4</span>Six garde-fous</h4>
+  <ol class="etapes">
+    <li><span class="titre-etape">Diversifier les points de vue</span>Associer communes, services, partenaires, entreprises et habitants pour croiser les regards.</li>
+    <li><span class="titre-etape">Séparer les temps</span>Distinguer clairement la collecte des signaux, leur interprétation, le débat, puis l'arbitrage final. Les mélanger produit du consensus mou.</li>
+    <li><span class="titre-etape">Documenter les hypothèses</span>Pour chaque donnée : source, date, échelle géographique, niveau d'incertitude, controverses éventuelles.</li>
+    <li><span class="titre-etape">Forcer le contraste</span>Au moins trois scénarios plausibles et réellement distincts, sans caricature. Deux scénarios se transforment toujours en « le bon et le mauvais ».</li>
+    <li><span class="titre-etape">Organiser la contradiction</span>Revue externe, avocat du diable, désaccords explicités dans le rendu final.</li>
+    <li><span class="titre-etape">Tester la robustesse</span>Identifier les actions utiles dans plusieurs scénarios, et les seuils qui déclencheraient une adaptation.</li>
+  </ol>
+  <div class="bloc retenir">
+    <span class="etiquette">À retenir</span>
+    <p>On ne supprime pas les biais. On installe des règles de travail qui empêchent un biais de devenir une décision collective non discutée.</p>
+  </div>
+</section>
+
+<!-- ============ PARTIE II ============ -->
+<div class="partie-ouverture">
+  <div class="lettre">Partie II</div>
+  <h2>Faire</h2>
+  <p>Comment cadrer, dérouler et animer une démarche, des préalables jusqu'au programme d'actions.</p>
+</div>
+
+<section class="chapitre" id="ch5">
+  <h3><span class="num">05</span>Cadrer avant de commencer</h3>
+  <p class="accroche">Six décisions à prendre avant la première réunion. Les esquiver garantit l'enlisement.</p>
+
+  <h4><span class="rep">5.1</span>Les six préalables</h4>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Décision</th><th>Question à trancher</th><th>Effet si on l'esquive</th></tr></thead>
+    <tbody>
+      <tr><td><strong>La finalité</strong></td><td>À quelle décision cette démarche doit-elle servir ?</td><td>Un rapport sans destinataire</td></tr>
+      <tr><td><strong>Le territoire pertinent</strong></td><td>Le périmètre de l'EPCI, un secteur, ou un espace vécu plus large ?</td><td>Analyses hors-sol ou effets de frontière absurdes</td></tr>
+      <tr><td><strong>L'horizon temporel</strong></td><td>2035 ? 2040 ? 2050 ? Selon les ruptures possibles et les marges de manœuvre</td><td>Débats sans fin sur des échelles incomparables</td></tr>
+      <tr><td><strong>La durée de la démarche</strong></td><td>Six mois ? Deux ans ? Elle conditionne méthodes et résultats</td><td>Démarrage ambitieux, abandon en cours de route</td></tr>
+      <tr><td><strong>Les participants</strong></td><td>Élus, services, partenaires, socioprofessionnels, habitants — qui, à quel moment ?</td><td>Non-appropriation, rejet en fin de parcours</td></tr>
+      <tr><td><strong>La visibilité</strong></td><td>Travail interne ou exercice public ? Le budget varie du simple au décuple</td><td>Attentes déçues, communication improvisée</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4><span class="rep">5.2</span>Fiche de cadrage type</h4>
+  <div class="bloc action">
+    <span class="etiquette">Modèle à remplir</span>
+    <ul class="serre">
+      <li><strong>Question de décision :</strong> « Comment … à l'horizon 20XX ? »</li>
+      <li><strong>Commanditaire politique :</strong> élu référent + instance de validation (bureau, conseil communautaire)</li>
+      <li><strong>Direction pilote :</strong> service + agent référent + temps agent estimé</li>
+      <li><strong>Périmètre géographique :</strong> et sous-secteurs d'analyse (littoral / rétro-littoral / rural)</li>
+      <li><strong>Horizon :</strong> et jalons intermédiaires (2030, 2035, 2040)</li>
+      <li><strong>Livrables :</strong> diagnostic prospectif, jeu de scénarios, note d'enjeux, portefeuille d'actions robustes</li>
+      <li><strong>Participants et moments :</strong> qui est consulté, qui délibère, qui tranche</li>
+      <li><strong>Ce qui est hors champ :</strong> à écrire explicitement</li>
+    </ul>
+  </div>
+
+  <div class="bloc ncpa">
+    <span class="etiquette">Application NCPA</span>
+    <p>Pour un premier cycle, mieux vaut une question étroite et opérationnelle qu'une prospective générale du territoire. Par exemple : <em>« Quelle évolution des besoins en collecte des déchets à l'horizon 2040 ? »</em> — sujet directement dans votre champ de compétence, riche en données internes, et dont les résultats parlent immédiatement aux élus (coûts, implantations, tournées). Le chapitre 16 déroule ce cas.</p>
+  </div>
+</section>
+
+<section class="chapitre" id="ch6">
+  <h3><span class="num">06</span>La démarche en sept étapes</h3>
+  <p class="accroche">Le déroulé de référence issu de la prospective stratégique, transposé aux territoires.</p>
+
+  <p>Ces sept étapes ne sont pas un tunnel rigide : elles s'articulent, se recoupent, et certaines démarches réussies en sautent délibérément. Mais elles constituent la carte du territoire méthodologique.</p>
+
+  <ol class="etapes">
+    <li>
+      <span class="titre-etape">Rétrospective</span>
+      Évaluer les politiques et projets passés. D'où vient ce territoire ? Qu'a-t-on tenté, qu'est-ce qui a marché, qu'est-ce qui a échoué et pourquoi ? Faire de la prospective, c'est commencer par rencontrer ceux qui connaissent l'histoire du lieu. Sans rétrospective, on projette une photographie du présent.
+      <br><br><em>Outils :</em> séries statistiques longues, archives, entretiens avec des anciens élus et agents, bilans de politiques publiques.
+    </li>
+    <li>
+      <span class="titre-etape">Audit territorial : le regard lucide</span>
+      Forces et faiblesses, atouts et handicaps. Attention : un diagnostic prospectif ne se limite pas à un SWOT statique. Il faut formuler les enjeux en termes de <strong>freins et de moteurs</strong>, pas seulement d'atouts et de faiblesses, pour garder un caractère dynamique.
+      <br><br><em>Outils :</em> visites de terrain, indicateurs comparés (NCPA / Calvados / Normandie / France), benchmarking de territoires comparables, analyse des perceptions des acteurs.
+    </li>
+    <li>
+      <span class="titre-etape">Dynamique du territoire et jeu d'acteurs</span>
+      Qui a le pouvoir de faire bouger quoi ? Quelles alliances, quels conflits, quels projets concurrents ? On identifie ici les « champs de bataille », les menaces et opportunités, et on formule les questions clés pour le futur.
+      <br><br><em>Outils :</em> analyse du jeu d'acteurs (méthode Mactor), entretiens, cartographie des acteurs et de leurs objectifs.
+    </li>
+    <li>
+      <span class="titre-etape">Construire la représentation du système territorial</span>
+      Identifier les variables qui décrivent le territoire et leurs relations d'influence mutuelle, puis en extraire les <strong>variables clés</strong> : celles qui sont à la fois très influentes et très incertaines. C'est l'étape la plus technique, et celle qui distingue une prospective d'un diagnostic.
+      <br><br><em>Outils :</em> analyse structurelle (méthode Micmac), ateliers de repérage de variables.
+    </li>
+    <li>
+      <span class="titre-etape">Prospective exploratoire</span>
+      Tendances lourdes, germes de changement, ruptures redoutées ou souhaitées. On balaie le champ des possibles sur chaque variable clé (plusieurs hypothèses par variable), puis on combine les hypothèses cohérentes entre elles pour former des scénarios.
+      <br><br><em>Outils :</em> ateliers prospectifs, analyse morphologique, entretiens de grands témoins, veille.
+    </li>
+    <li>
+      <span class="titre-etape">Concertation</span>
+      Confronter les scénarios aux acteurs du territoire pour repérer non seulement les consensus, mais aussi — et surtout — <strong>les divergences et les controverses</strong>. Ce sont elles qui permettent de contraster les scénarios et de révéler les vrais choix politiques.
+      <br><br><em>Outils :</em> Delphi, abaque de Régnier, forums, séminaires de validation.
+    </li>
+    <li>
+      <span class="titre-etape">Du scénario souhaité au projet, puis aux actions</span>
+      Traduire la vision en orientations stratégiques hiérarchisées, puis en programme d'actions évalué. Deux temps distincts : les techniciens évaluent la faisabilité, les élus tranchent la désirabilité.
+      <br><br><em>Outils :</em> arbre de pertinence, matrice d'évaluation multicritère, graphe d'objectifs.
+    </li>
+  </ol>
+
+  <p>Une <strong>huitième étape transversale</strong> traverse tout le processus : évaluation, suivi et veille prospective. C'est elle qui transforme un exercice ponctuel en capacité durable.</p>
+
+  <h4><span class="rep">6.1</span>Critères d'évaluation des orientations stratégiques</h4>
+  <p>Au moment de trier les orientations possibles, une grille technique (notée de 0 à 5 par les services) puis une grille politique (remplie par les élus) évitent l'arbitraire :</p>
+  <ol class="serre">
+    <li>Capacité à répondre à une menace avérée ou prévisible</li>
+    <li>Caractère d'urgence</li>
+    <li>Adéquation avec les compétences techniques actuelles des services</li>
+    <li>Échelle territoriale de mise en œuvre</li>
+    <li>Degré de maturité (mobilisable tout de suite ou nécessitant un temps de maturation)</li>
+    <li>Probabilité de réussite / degré d'incertitude</li>
+  </ol>
+
+  <div class="bloc piege">
+    <span class="etiquette">Piège de séquence</span>
+    <p>Un diagnostic réalisé par des professionnels déconnectés de la pratique prospective produit un matériau inexploitable en aval. Le diagnostic doit être conçu <em>dès le départ</em> comme le socle d'une prospective : dynamique, attentif aux signaux faibles, sensible au jeu d'acteurs. Sinon, il faut le refaire.</p>
+  </div>
+</section>
+
+<section class="chapitre" id="ch7">
+  <h3><span class="num">07</span>Construire des scénarios utiles</h3>
+  <p class="accroche">Un scénario est une histoire cohérente de changements possibles, fondée sur des hypothèses explicites.</p>
+
+  <h4><span class="rep">7.1</span>L'objectif n'est pas de désigner le futur gagnant</h4>
+  <p>Il est de <strong>tester la robustesse des politiques publiques</strong>. La bonne question n'est pas « lequel est vrai ? » mais « que faisons-nous dès maintenant pour être prêts dans les trois cas ? ».</p>
+
+  <h4><span class="rep">7.2</span>La méthode, pas à pas</h4>
+  <ol class="etapes">
+    <li><span class="titre-etape">Poser la question de décision</span>Ex. : « Comment assurer l'accès aux services d'ici 2040 ? » Une question, un horizon.</li>
+    <li><span class="titre-etape">Lister les variables motrices</span>Une quinzaine de variables maximum, triées entre tendances lourdes (peu incertaines) et incertitudes majeures (très incertaines et très influentes).</li>
+    <li><span class="titre-etape">Formuler des hypothèses par variable</span>2 ou 3 hypothèses contrastées pour chaque variable clé. Ex. pour l'attractivité résidentielle : « forte », « stable », « en repli ».</li>
+    <li><span class="titre-etape">Combiner en scénarios cohérents</span>On ne retient que les combinaisons plausibles. Trois à quatre scénarios suffisent.</li>
+    <li><span class="titre-etape">Écrire les récits</span>Chaque scénario est raconté : ce qui se passe, dans quel ordre, avec quelles conséquences visibles sur le territoire.</li>
+    <li><span class="titre-etape">Tester les politiques dans chaque futur</span>Que devient notre programme d'investissement si le scénario C se réalise ? Qu'est-ce qui casse ?</li>
+    <li><span class="titre-etape">Extraire les actions robustes</span>Celles qui restent utiles dans plusieurs scénarios. Ce sont les priorités sans regret.</li>
+  </ol>
+
+  <h4><span class="rep">7.3</span>Trois trajectoires types (exemples de forme)</h4>
+  <div class="grille trois">
+    <div class="fiche">
+      <h6>A · Continuités sous contrainte</h6>
+      <p>Croissance modérée, vieillissement accentué, finances tendues, adaptation progressive et réactive aux chocs.</p>
+    </div>
+    <div class="fiche bleu">
+      <h6>B · Transition organisée</h6>
+      <p>Polarités renforcées, habitat transformé, mobilités sobres, adaptation planifiée, coopération intercommunale forte.</p>
+    </div>
+    <div class="fiche rouge">
+      <h6>C · Fragmentation et vulnérabilités</h6>
+      <p>Chocs climatiques ou économiques, accès inégal aux services, ressources sous tension, repli sur soi.</p>
+    </div>
+  </div>
+  <p class="note">Ces trois trajectoires sont des exemples de <em>forme</em>, pas un diagnostic du territoire. Elles doivent être réécrites à partir des données et des choix politiques propres à la NCPA.</p>
+
+  <h4><span class="rep">7.4</span>Le test de robustesse</h4>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Action envisagée</th><th>Scénario A</th><th>Scénario B</th><th>Scénario C</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Optimiser les tournées de collecte</td><td>Utile</td><td>Utile</td><td>Utile</td><td class="prio p1">Sans regret</td></tr>
+      <tr><td>Nouvel équipement lourd dimensionné au pic</td><td>Surdimensionné</td><td>Adapté</td><td>Sous-utilisé</td><td class="prio p2">À conditionner</td></tr>
+      <tr><td>Renforcer la collecte saisonnière modulable</td><td>Utile</td><td>Utile</td><td>Indispensable</td><td class="prio p1">Sans regret</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Le tableau ci-dessus est un modèle vide à remplir : c'est le livrable qui intéresse le plus une direction générale, parce qu'il transforme des scénarios en décisions d'investissement.</p>
+
+  <h4><span class="rep">7.5</span>Les indicateurs de bascule</h4>
+  <p>Pour chaque scénario, définir un ou deux indicateurs qui signaleraient qu'on s'y engage. Exemples possibles : part des résidences secondaires transformées en résidences principales, solde migratoire des 25-39 ans, nombre de logements vacants remis sur le marché, tonnage collecté hors saison. Ce sont eux qui alimentent la veille des années suivantes.</p>
+</section>
+
+<section class="chapitre" id="ch8">
+  <h3><span class="num">08</span>Animer : ateliers et outils</h3>
+  <p class="accroche">La qualité d'une démarche tient moins à la sophistication des outils qu'à la discipline collective.</p>
+
+  <h4><span class="rep">8.1</span>Pourquoi des ateliers structurés</h4>
+  <p>Les réunions de travail ordinaires ont des pathologies connues : perte de temps, poids de la hiérarchie, autocensure, conservatisme des idées, non-dits. Les ateliers prospectifs sont une réponse : ils imposent une alternance entre réflexion individuelle écrite et travail de groupe, ce qui limite l'effet d'entraînement du premier qui parle.</p>
+
+  <h4><span class="rep">8.2</span>Déroulé type d'un atelier thématique</h4>
+  <p>Une demi-journée à une journée, une quinzaine de participants de statuts variés (élus, techniciens, partenaires extérieurs, socioprofessionnels, personnalités locales) :</p>
+  <ol class="etapes">
+    <li><span class="titre-etape">Appropriation (1h30)</span>Présentation d'une liste d'enjeux issus du diagnostic. Chacun réagit par écrit : quelles questions clés le territoire devra-t-il traiter ?</li>
+    <li><span class="titre-etape">Facteurs de changement et d'inertie</span>Qu'est-ce qui bouge, qu'est-ce qui bloque ? Travail en sous-groupes puis restitution.</li>
+    <li><span class="titre-etape">Tendances lourdes et ruptures</span>Pour chaque tendance identifiée : quelle rupture pourrait l'interrompre ou l'accélérer ?</li>
+    <li><span class="titre-etape">Transformation en enjeux (1h)</span>Chaque participant transforme les tendances et leurs conséquences en enjeux majeurs à anticiper et questions clés pour le futur.</li>
+  </ol>
+
+  <h4><span class="rep">8.3</span>Un atelier utile en ouverture : les idées reçues</h4>
+  <p>Faire lister par les participants les idées reçues sur leur propre territoire, puis les confronter aux données. L'écart entre perception et réalité mesurée est souvent spectaculaire — et c'est un excellent déclencheur d'adhésion à la démarche.</p>
+
+  <h4><span class="rep">8.4</span>La boîte à outils formalisée</h4>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Outil</th><th>À quoi il sert</th><th>Quand l'utiliser</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ateliers de prospective</strong></td><td>Se poser les bonnes questions collectivement</td><td>Tout au long</td></tr>
+      <tr><td><strong>Micmac</strong></td><td>Analyse structurelle : identifier les variables clés parmi des dizaines de variables</td><td>Étape 4</td></tr>
+      <tr><td><strong>Mactor</strong></td><td>Analyser les stratégies d'acteurs, rapports de force et convergences</td><td>Étape 3</td></tr>
+      <tr><td><strong>Morphol</strong></td><td>Analyse morphologique : balayer systématiquement les combinaisons d'hypothèses</td><td>Étape 5</td></tr>
+      <tr><td><strong>Abaque de Régnier</strong></td><td>Faire émerger consensus, divergences et controverses par un vote coloré</td><td>Étape 6</td></tr>
+      <tr><td><strong>Multipol</strong></td><td>Choisir entre plusieurs options en avenir incertain (multicritère)</td><td>Étape 7</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Ces méthodes sont documentées et les logiciels associés sont diffusés gratuitement par le LIPSOR / laprospective.fr. Elles ne sont pas indispensables pour démarrer.</p>
+
+  <h4><span class="rep">8.5</span>Ce qu'on peut faire sans budget d'étude</h4>
+  <ul>
+    <li><strong>Dix à quinze entretiens de « grands témoins »</strong> (une heure chacun, grille commune) : le meilleur rapport effort/valeur d'une démarche prospective.</li>
+    <li><strong>Un atelier interne par direction</strong> pour recueillir les signaux faibles perçus par les agents de terrain — c'est une donnée que personne d'autre ne possède.</li>
+    <li><strong>Une rétrospective chiffrée</strong> à partir de séries Insee gratuites (2010 → aujourd'hui).</li>
+    <li><strong>Un séminaire d'une journée</strong> avec les vice-présidents et les maires pour valider les questions clés.</li>
+  </ul>
+</section>
+
+<!-- ============ PARTIE III ============ -->
+<div class="partie-ouverture">
+  <div class="lettre">Partie III</div>
+  <h2>La donnée</h2>
+  <p>Quelles données mobiliser, où les trouver, comment les assembler et surtout comment les croiser pour en tirer des enseignements prospectifs.</p>
+</div>
+
+<section class="chapitre" id="ch9">
+  <h3><span class="num">09</span>Principes d'une prospective par la donnée</h3>
+  <p class="accroche">La donnée est une matière première essentielle. Elle ne suffit jamais.</p>
+
+  <h4><span class="rep">9.1</span>Trois niveaux de lecture</h4>
+  <div class="grille trois">
+    <div class="fiche"><h6>Niveau 1 · Observer</h6><p><strong>Que se passe-t-il ?</strong><br>Données historiques et photographie actuelle.</p></div>
+    <div class="fiche"><h6>Niveau 2 · Comprendre</h6><p><strong>Pourquoi cela se passe-t-il ?</strong><br>Croisement des indicateurs, identification des facteurs déterminants.</p></div>
+    <div class="fiche bleu"><h6>Niveau 3 · Anticiper</h6><p><strong>Que pourrait-il se passer ?</strong><br>Projections, scénarios, analyse des conséquences.</p></div>
+  </div>
+  <p>La plupart des observatoires territoriaux s'arrêtent au niveau 1. C'est le passage au niveau 3 qui crée la valeur.</p>
+
+  <h4><span class="rep">9.2</span>Ne pas confondre socle et exhaustivité</h4>
+  <p>La tentation est de télécharger deux cents jeux de données. C'est le moyen le plus sûr de ne jamais produire d'analyse. Un socle de dix sources bien maîtrisées est plus puissant qu'un entrepôt de données inexploité.</p>
+  <div class="bloc retenir">
+    <span class="etiquette">Règle de travail</span>
+    <p>Une donnée n'entre dans le socle que si l'on sait déjà à quelle question elle sert. Toute autre donnée est notée dans une liste d'attente, pas téléchargée.</p>
+  </div>
+
+  <h4><span class="rep">9.3</span>Les mailles géographiques</h4>
+  <p>Le choix de la maille détermine ce que l'on peut voir — et ce que l'on ne verra pas.</p>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Maille</th><th>Ce qu'elle permet</th><th>Limite</th></tr></thead>
+    <tbody>
+      <tr><td><strong>EPCI</strong></td><td>Comparaison avec d'autres territoires, séries longues</td><td>Masque toutes les disparités internes</td></tr>
+      <tr><td><strong>Commune</strong></td><td>Le niveau de dialogue politique naturel</td><td>Insuffisant sur les communes étendues ou très contrastées</td></tr>
+      <tr><td><strong>IRIS</strong></td><td>Infra-communal sur les communes de plus de 5 000 habitants</td><td>N'existe pas sur les petites communes</td></tr>
+      <tr><td><strong>Carreau (200 m)</strong></td><td>Analyse fine et homogène partout, y compris en rural</td><td>Données limitées (population, revenus) et secret statistique</td></tr>
+      <tr><td><strong>Parcelle / adresse</strong></td><td>Foncier, bâti, transactions, équipements</td><td>Volume, complexité, conditions d'accès parfois restreintes</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4><span class="rep">9.4</span>Documenter chaque donnée</h4>
+  <p>Pour toute donnée entrant dans le socle, renseigner systématiquement :</p>
+  <ul class="serre">
+    <li>source et producteur ;</li>
+    <li>millésime (attention : le recensement Insee porte sur une année de référence antérieure à sa publication) ;</li>
+    <li>maille géographique et périmètre ;</li>
+    <li>définition exacte de l'indicateur (un « logement vacant » n'a pas la même définition selon la source) ;</li>
+    <li>niveau d'incertitude et limites connues ;</li>
+    <li>date de mise à jour prévue.</li>
+  </ul>
+  <p class="note">Cette fiche de métadonnées paraît bureaucratique. Elle évite, deux ans plus tard, de ne plus savoir d'où sort un chiffre présenté en conseil communautaire.</p>
+</section>
+
+<section class="chapitre" id="ch10">
+  <h3><span class="num">10</span>Les huit familles de questions</h3>
+  <p class="accroche">Le questionnaire de base d'un diagnostic prospectif territorial.</p>
+
+  <h4><span class="rep">10.1</span>Population</h4>
+  <ul class="serre">
+    <li>La population augmente-t-elle ou diminue-t-elle, et où précisément ?</li>
+    <li>La croissance est-elle portée par les naissances ou par les migrations ?</li>
+    <li>Comment évolue la structure par âge ? Quelle proportion de plus de 65 ans, de plus de 80 ans ?</li>
+    <li>Combien d'enfants et d'adolescents ? Comment évolue la population active ?</li>
+    <li>Le nombre de ménages évolue-t-il plus vite que la population ? La taille moyenne diminue-t-elle ?</li>
+    <li>Quels phénomènes migratoires sont à l'œuvre (qui arrive, qui part, à quel âge) ?</li>
+  </ul>
+  <div class="bloc retenir">
+    <span class="etiquette">L'enjeu prospectif central</span>
+    <p>Une hausse de population ne signifie pas une hausse proportionnelle des besoins. <strong>+5 % de population</strong> peut vouloir dire +5 % de familles avec enfants, +5 % de retraités, +5 % de personnes seules ou +5 % de résidents secondaires. Ces quatre situations produisent des besoins radicalement différents en logements, écoles, services, mobilité et équipements.</p>
+  </div>
+
+  <h4><span class="rep">10.2</span>Habitat et logement</h4>
+  <ul class="serre">
+    <li>Combien de logements construits chaque année, et où ?</li>
+    <li>Quelle proportion de logements vacants ? de résidences secondaires ?</li>
+    <li>Quel type et quelle taille de logements sont produits ?</li>
+    <li>Les logements sont-ils adaptés au vieillissement ?</li>
+    <li>Où reste-t-il du foncier mobilisable ? Quels centres-bourgs perdent de la population ?</li>
+    <li>Quelle part de la croissance démographique peut être absorbée par le parc existant ?</li>
+  </ul>
+  <blockquote>Les logements qui seront disponibles demain correspondent-ils aux ménages qui vivront demain sur le territoire ?</blockquote>
+  <p>Question particulièrement critique en territoire littoral ou touristique, où le nombre de logements peut évoluer indépendamment du nombre de résidents permanents.</p>
+
+  <h4><span class="rep">10.3</span>Économie et emploi</h4>
+  <ul class="serre">
+    <li>Quels secteurs progressent, lesquels déclinent ? Où sont créés les emplois ?</li>
+    <li>Quels métiers connaîtront des tensions de recrutement ? Quel âge moyen des actifs, combien de départs en retraite prévisibles ?</li>
+    <li>Les emplois sont-ils occupés par des habitants du territoire ?</li>
+    <li>Le territoire dépend-il fortement de quelques secteurs ?</li>
+    <li>Quelle dynamique du commerce de proximité et des zones d'activités ?</li>
+  </ul>
+
+  <h4><span class="rep">10.4</span>Services et équipements</h4>
+  <ul class="serre">
+    <li>Où sont les écoles, les professionnels de santé, les commerces, les équipements sportifs et culturels ?</li>
+    <li>Quels équipements sont sous-utilisés ? Lesquels pourraient devenir insuffisants ?</li>
+    <li>Certains services sont-ils très concentrés géographiquement ?</li>
+    <li>Quelle population doit parcourir quelle distance pour accéder à quel service ?</li>
+  </ul>
+  <p>Un indicateur synthétique particulièrement parlant : <strong>population future potentiellement desservie / capacité future de l'équipement</strong>.</p>
+
+  <h4><span class="rep">10.5</span>Mobilités</h4>
+  <ul class="serre">
+    <li>Comment les habitants se déplacent-ils ? Où travaillent-ils ?</li>
+    <li>Quelle dépendance à la voiture ? Quels flux domicile-travail principaux ?</li>
+    <li>Les flux saisonniers sont-ils importants et où se concentrent-ils ?</li>
+    <li>Quelle évolution anticiper avec le vieillissement (perte de mobilité individuelle) ?</li>
+    <li>Où serait-il pertinent de développer transports collectifs, vélo ou mobilités partagées ?</li>
+  </ul>
+  <p>La mobilité est un excellent sujet prospectif car elle relie tout le reste : <em>logement → emploi → services → équipements → déplacements</em>.</p>
+
+  <h4><span class="rep">10.6</span>Foncier et urbanisation</h4>
+  <ul class="serre">
+    <li>Où se construit-on aujourd'hui ? Où pourra-t-on construire demain ?</li>
+    <li>Quelle quantité de foncier consommée, à quelle densité ?</li>
+    <li>Existe-t-il des friches ? Quels bâtiments pourraient changer d'usage ?</li>
+    <li>Quelle part du développement peut passer par le renouvellement urbain ?</li>
+    <li>Quels secteurs sont contraints par les risques naturels ?</li>
+    <li>Comment la trajectoire de sobriété foncière modifie-t-elle les possibilités d'aménagement ?</li>
+  </ul>
+  <blockquote>Quelle population pourrait théoriquement être accueillie compte tenu des règles d'urbanisme actuelles ?</blockquote>
+  <p>À croiser systématiquement avec les projections démographiques : c'est là que les incohérences apparaissent.</p>
+
+  <h4><span class="rep">10.7</span>Environnement et changement climatique</h4>
+  <ul class="serre">
+    <li>Comment le climat local va-t-il évoluer (températures, précipitations, sécheresse) ?</li>
+    <li>Quels secteurs exposés aux inondations, à la submersion marine, au ruissellement ?</li>
+    <li>Quels secteurs concernés par le retrait-gonflement des argiles ?</li>
+    <li>Comment évoluera la ressource en eau ?</li>
+    <li>Quelles infrastructures pourraient devenir vulnérables ?</li>
+  </ul>
+
+  <h4><span class="rep">10.8</span>Finances et capacité d'agir</h4>
+  <p>Famille souvent oubliée, pourtant décisive. On passe de « que va devenir le territoire ? » à <strong>« que pourra financièrement faire la collectivité face à ces évolutions ? »</strong> : dépenses, recettes, fiscalité, capacité d'investissement, dette, comparaison avec des collectivités similaires.</p>
+</section>
+
+<section class="chapitre" id="ch11">
+  <h3><span class="num">11</span>Les sources à mobiliser</h3>
+  <p class="accroche">Trente sources cartographiées, dont un noyau dur de dix par lequel commencer.</p>
+
+  <h4><span class="rep">11.1</span>Le noyau dur</h4>
+  <div class="chaine">
+    <strong>Population</strong> — Insee Données locales <span class="fleche">+</span> Omphale <span class="fleche">+</span> Filosofi<br>
+    <strong>Habitat</strong> — Insee <span class="fleche">+</span> Fichiers fonciers <span class="fleche">+</span> DVF <span class="fleche">+</span> LOVAC<br>
+    <strong>Urbanisme</strong> — Géoportail de l'urbanisme <span class="fleche">+</span> IGN<br>
+    <strong>Économie</strong> — SIRENE <span class="fleche">+</span> Insee<br>
+    <strong>Environnement</strong> — Géorisques <span class="fleche">+</span> portail de l'artificialisation <span class="fleche">+</span> DRIAS<br>
+    <strong>Services</strong> — BPE<br>
+    <strong>Politiques publiques</strong> — données internes NCPA <span class="fleche">+</span> ADEME / SINOE
+  </div>
+
+  <h4><span class="rep">11.2</span>Les incontournables, commentées</h4>
+
+  <h5>Insee — Données locales</h5>
+  <p>La source n°1. Recensement, population par âge, ménages, logements, revenus, emploi, migrations, mobilités, catégories socioprofessionnelles, résidences principales et secondaires. Une partie est géolocalisée jusqu'à des mailles fines, exploitable directement dans QGIS.</p>
+
+  <h5>Insee — Omphale (projections)</h5>
+  <p>C'est ici qu'on passe de « que s'est-il passé ? » à « que pourrait-il se passer ? ». Projections de population, structure par âge, population active, ménages, avec possibilité de tester plusieurs jeux d'hypothèses (fécondité, mortalité, migrations). Des projections de ménages sont également disponibles jusqu'en 2050.</p>
+
+  <h5>Insee — Filosofi</h5>
+  <p>Revenus, niveau de vie, pauvreté, à maille fine. Essentiel pour repérer les inégalités spatiales et les fragilités sociales, à croiser avec logement, mobilité et accès aux services.</p>
+
+  <h5>Insee — Base permanente des équipements (BPE)</h5>
+  <p>Plus de 180 types d'équipements et services localisés. Permet de calculer distances, taux d'équipement et zones sous-dotées. <em>Vous disposez déjà de l'extraction NCPA cartographiée : 1 225 équipements sur 38 communes, 7 catégories.</em></p>
+
+  <h5>Cerema — Fichiers fonciers, DVF+, LOVAC</h5>
+  <p>Le bloc foncier, probablement le plus riche après l'Insee. Locaux, parcelles, surfaces, dates de construction, propriétaires ; transactions et prix ; logements vacants. Question prospective typique : <em>combien de logements devons-nous réellement construire si une partie du parc vacant peut être remobilisée ?</em></p>
+
+  <h5>Géoportail de l'urbanisme</h5>
+  <p>Zonages PLU/PLUi, prescriptions, servitudes. Permet de passer de « voici le foncier disponible » à « voici le foncier théoriquement mobilisable compte tenu des règles ».</p>
+
+  <h5>IGN — Géoservices, BD TOPO, OCS GE, BAN, cadastre</h5>
+  <p>Le socle géographique. La Base Adresse Nationale est à considérer comme une brique d'infrastructure : c'est elle qui permet la chaîne <code>adresse → coordonnées → commune → parcelle → IRIS → carreau → équipement → données socio-économiques</code>.</p>
+
+  <h5>Géorisques et DRIAS</h5>
+  <p>Géorisques : inondation, submersion, mouvements de terrain, retrait-gonflement des argiles, cavités, sites pollués, avec API par commune. DRIAS : projections climatiques (températures, précipitations, épisodes chauds, sécheresse) aux horizons 2030 / 2050 / 2100.</p>
+
+  <h5>ADEME et SINOE</h5>
+  <p>Déchets, énergie, économie circulaire, émissions. SINOE permet de comparer les performances de collecte et de traitement de la NCPA avec des territoires similaires — un exercice de benchmarking directement exploitable dans votre domaine.</p>
+
+  <h5>Observatoire des territoires et data.gouv.fr</h5>
+  <p>Deux portes d'entrée plutôt que deux bases : l'Observatoire agrège des centaines d'indicateurs comparables entre territoires (idéal pour la question « qu'est-ce qui différencie la NCPA de territoires comparables ? ») ; data.gouv.fr est le moteur de recherche de l'écosystème français de la donnée publique.</p>
+
+  <h4><span class="rep">11.3</span>Tableau récapitulatif des trente sources</h4>
+  <p class="note">Priorité : <span class="p1">●</span> à explorer en priorité — <span class="p2">●</span> utile selon le sujet — <span class="p3">●</span> plutôt spécialisé.</p>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Source</th><th>Contenu</th><th>Maille utile</th><th>Intérêt prospectif</th><th>Prio.</th></tr></thead>
+    <tbody>
+      <tr><td>Insee — Données locales</td><td>Population, âge, ménages, logements, emploi, revenus, migrations</td><td>Commune → carreau</td><td>Socle démographique et socio-économique</td><td class="prio p1">●</td></tr>
+      <tr><td>Insee — Omphale</td><td>Projections de population et de population active</td><td>Commune / EPCI</td><td>Scénarios démographiques 2030-2050+</td><td class="prio p1">●</td></tr>
+      <tr><td>Insee — Filosofi</td><td>Revenus, pauvreté, niveau de vie</td><td>Commune → carreau</td><td>Fragilité sociale, ségrégation</td><td class="prio p1">●</td></tr>
+      <tr><td>Insee — BPE</td><td>Santé, écoles, commerces, services, équipements</td><td>Coordonnées / IRIS</td><td>Accessibilité et besoins futurs</td><td class="prio p1">●</td></tr>
+      <tr><td>Insee — SIRENE</td><td>Entreprises et établissements, activité, localisation</td><td>Établissement</td><td>Économie, commerces, mutations</td><td class="prio p1">●</td></tr>
+      <tr><td>Observatoire des territoires</td><td>Centaines d'indicateurs croisés</td><td>Commune → France</td><td>Point de départ pour explorer et comparer</td><td class="prio p1">●</td></tr>
+      <tr><td>data.gouv.fr</td><td>Catalogue de données publiques</td><td>Variable</td><td>Découverte de nouvelles sources</td><td class="prio p1">●</td></tr>
+      <tr><td>IGN — Géoservices / RGE</td><td>Topographie, bâti, routes, orthophotos, altimétrie</td><td>Très fin</td><td>Référentiel spatial de base</td><td class="prio p1">●</td></tr>
+      <tr><td>IGN — OCS GE</td><td>Occupation et couverture du sol</td><td>Fin</td><td>Urbanisation, artificialisation</td><td class="prio p1">●</td></tr>
+      <tr><td>IGN — BD TOPO</td><td>Bâtiments, routes, équipements, hydrographie</td><td>Objet géographique</td><td>Structure physique du territoire</td><td class="prio p1">●</td></tr>
+      <tr><td>Base Adresse Nationale</td><td>Adresses géolocalisées</td><td>Adresse</td><td>Géocodage de toutes les autres données</td><td class="prio p1">●</td></tr>
+      <tr><td>Cadastre / PCI</td><td>Parcelles et bâti</td><td>Parcelle</td><td>Analyse foncière et urbaine</td><td class="prio p1">●</td></tr>
+      <tr><td>Géoportail de l'urbanisme</td><td>PLU/PLUi, zonages, servitudes</td><td>Parcelle / zonage</td><td>Potentiel et contraintes de développement</td><td class="prio p1">●</td></tr>
+      <tr><td>Cerema — Fichiers fonciers</td><td>Locaux, parcelles, surfaces, propriétaires, occupation</td><td>Parcelle / carreau</td><td>Foncier, habitat, densification</td><td class="prio p1">●</td></tr>
+      <tr><td>Cerema — DVF / DVF+</td><td>Transactions immobilières et foncières, prix</td><td>Parcelle / mutation</td><td>Pression immobilière et foncière</td><td class="prio p1">●</td></tr>
+      <tr><td>Cerema — LOVAC</td><td>Logements vacants</td><td>Logement / commune</td><td>Déprise, revitalisation, potentiel résidentiel</td><td class="prio p1">●</td></tr>
+      <tr><td>Portail de l'artificialisation</td><td>Consommation d'espaces naturels, agricoles, forestiers</td><td>Commune</td><td>Trajectoire de sobriété foncière</td><td class="prio p1">●</td></tr>
+      <tr><td>Géorisques</td><td>Inondation, submersion, argiles, mouvements de terrain</td><td>Parcelle / commune</td><td>Vulnérabilité future</td><td class="prio p1">●</td></tr>
+      <tr><td>DRIAS / Météo-France</td><td>Projections climatiques</td><td>Maille géographique</td><td>Climat 2030 / 2050 / 2100</td><td class="prio p1">●</td></tr>
+      <tr><td>SDES</td><td>Logement, transport, énergie, environnement</td><td>Variable</td><td>Transition écologique</td><td class="prio p1">●</td></tr>
+      <tr><td>ADEME — data</td><td>Déchets, énergie, émissions, économie circulaire</td><td>Variable</td><td>Transition et déchets</td><td class="prio p1">●</td></tr>
+      <tr><td>SINOE / ADEME</td><td>Déchets : collecte, traitement, installations, performances</td><td>Commune → territoire</td><td>Prospective déchets et benchmarking</td><td class="prio p1">●</td></tr>
+      <tr><td>Transport.data.gouv.fr</td><td>Réseaux, arrêts, transports collectifs, vélo</td><td>Objet géographique</td><td>Mobilité et accessibilité</td><td class="prio p2">●</td></tr>
+      <tr><td>FINESS</td><td>Établissements sanitaires et médico-sociaux</td><td>Établissement</td><td>Vieillissement, santé, dépendance</td><td class="prio p2">●</td></tr>
+      <tr><td>France Travail</td><td>Emploi, chômage, tensions métiers</td><td>Commune / EPCI</td><td>Marché du travail</td><td class="prio p2">●</td></tr>
+      <tr><td>Agreste</td><td>Agriculture : exploitations, surfaces, productions</td><td>Commune → département</td><td>Mutations agricoles et alimentaires</td><td class="prio p2">●</td></tr>
+      <tr><td>OFGL</td><td>Finances des collectivités</td><td>Commune / EPCI</td><td>Soutenabilité financière</td><td class="prio p2">●</td></tr>
+      <tr><td>BANATIC</td><td>Intercommunalités, compétences, périmètres</td><td>EPCI</td><td>Comparaison et gouvernance</td><td class="prio p2">●</td></tr>
+      <tr><td>Enedis Open Data</td><td>Consommation et production électrique</td><td>Adresse agrégée → EPCI</td><td>Énergie, électrification</td><td class="prio p2">●</td></tr>
+      <tr><td>RTE Open Data</td><td>Production, consommation, réseau</td><td>France → région</td><td>Système énergétique</td><td class="prio p3">●</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Cette liste est une base de travail, pas un inventaire exhaustif. S'y ajoutent les données internes de la collectivité, qui constituent souvent la couche la plus précieuse (voir chapitre 13).</p>
+</section>
+
+<section class="chapitre" id="ch12">
+  <h3><span class="num">12</span>Croiser : les chaînes causales</h3>
+  <p class="accroche">Le véritable intérêt n'est pas d'accumuler des indicateurs, mais de relier les phénomènes entre eux.</p>
+
+  <p>Une base de données contenant tous les indicateurs possibles ne produit rien. Ce qui produit de la connaissance, ce sont les <strong>relations entre les phénomènes</strong>. Cinq chaînes de base :</p>
+
+  <h5>Démographie</h5>
+  <div class="chaine">
+    <span class="maillon">Population</span><span class="fleche">→</span><span class="maillon">Âge</span><span class="fleche">→</span><span class="maillon">Ménages</span><span class="fleche">→</span><span class="maillon">Structure familiale</span>
+  </div>
+
+  <h5>Habitat</h5>
+  <div class="chaine">
+    <span class="maillon">Ménages</span><span class="fleche">→</span><span class="maillon">Besoin en logements</span><span class="fleche">→</span><span class="maillon">Construction</span><span class="fleche">→</span><span class="maillon">Localisation</span>
+  </div>
+
+  <h5>Mobilité</h5>
+  <div class="chaine">
+    <span class="maillon">Logement</span><span class="fleche">+</span><span class="maillon">Emploi</span><span class="fleche">+</span><span class="maillon">Services</span><span class="fleche">→</span><span class="maillon">Déplacements</span>
+  </div>
+
+  <h5>Services publics</h5>
+  <div class="chaine">
+    <span class="maillon">Population</span><span class="fleche">+</span><span class="maillon">Âge</span><span class="fleche">+</span><span class="maillon">Localisation</span><span class="fleche">→</span><span class="maillon">Besoins en équipements</span>
+  </div>
+
+  <h5>Environnement</h5>
+  <div class="chaine">
+    <span class="maillon">Population</span><span class="fleche">+</span><span class="maillon">Urbanisation</span><span class="fleche">+</span><span class="maillon">Mobilité</span><span class="fleche">→</span><span class="maillon">Consommation foncière</span><span class="fleche">→</span><span class="maillon">Émissions</span><span class="fleche">→</span><span class="maillon">Vulnérabilité climatique</span>
+  </div>
+
+  <div class="bloc retenir">
+    <span class="etiquette">Méthode</span>
+    <p>Avant de télécharger quoi que ce soit, dessinez la chaîne causale de votre question. Chaque maillon indique la donnée dont vous avez besoin — et vous découvrirez souvent que deux ou trois maillons n'existent pas dans les données publiques et devront être estimés par des ratios. C'est normal : la prospective assume ses hypothèses.</p>
+  </div>
+
+  <h4><span class="rep">12.1</span>La méthode de travail progressive</h4>
+  <ol class="etapes">
+    <li><span class="titre-etape">Diagnostic</span>Identifier les grandes dynamiques : population, vieillissement, ménages, logement, économie, emploi, foncier, mobilité.</li>
+    <li><span class="titre-etape">Tendances</span>Pour chaque indicateur : 2010 → 2015 → 2020 → 2025. Calculer évolution absolue, évolution relative, taux annuel moyen, et comparer NCPA / Calvados / Normandie / France.</li>
+    <li><span class="titre-etape">Variables explicatives</span>Chercher <em>pourquoi</em>. La population augmente : solde naturel ? migrations ? construction ? attractivité touristique ? proximité de Caen ? nouveaux ménages ?</li>
+    <li><span class="titre-etape">Projections</span>2030 → 2040 → 2050, en distinguant nettement projection officielle, extrapolation tendancielle et scénario alternatif.</li>
+    <li><span class="titre-etape">Scénarios</span>Tendanciel / attractivité renforcée / vieillissement accentué / transition contrainte.</li>
+    <li><span class="titre-etape">Conséquences</span>Pour chaque scénario : que devient le territoire ? quelles conséquences pour les politiques publiques ? que faut-il commencer à faire aujourd'hui ?</li>
+  </ol>
+</section>
+
+<section class="chapitre" id="ch13">
+  <h3><span class="num">13</span>Construire la base prospective</h3>
+  <p class="accroche">Huit tables suffisent pour structurer un observatoire territorial exploitable.</p>
+
+  <h4><span class="rep">13.1</span>Architecture proposée</h4>
+  <div class="grille deux">
+    <div class="fiche"><h6>1 · Territoire</h6><p>Commune, EPCI, IRIS, carreau, secteur géographique d'analyse.</p></div>
+    <div class="fiche"><h6>2 · Population</h6><p>Population, âge, ménages, évolutions, projections.</p></div>
+    <div class="fiche"><h6>3 · Habitat</h6><p>Logements, vacance, résidences secondaires, construction, transactions.</p></div>
+    <div class="fiche"><h6>4 · Économie</h6><p>Établissements, emplois, secteurs d'activité, revenus.</p></div>
+    <div class="fiche"><h6>5 · Équipements</h6><p>Équipements, services, capacité, distance et accessibilité.</p></div>
+    <div class="fiche"><h6>6 · Foncier</h6><p>Occupation du sol, artificialisation, potentiel, friches, zonage PLU(i).</p></div>
+    <div class="fiche"><h6>7 · Environnement</h6><p>Risques, climat, eau, biodiversité, vulnérabilités.</p></div>
+    <div class="fiche bleu"><h6>8 · Scénarios</h6><p>Scénario tendanciel, haut, bas ; hypothèses retenues ; horizon temporel.</p></div>
+  </div>
+  <p>La table 8 est celle qui fait la différence entre un observatoire et un outil prospectif : elle stocke non pas des faits, mais des <strong>hypothèses datées et sourcées</strong>, ce qui permet de les réviser et de comparer ce qu'on croyait il y a trois ans avec ce qui s'est réellement produit.</p>
+
+  <h4><span class="rep">13.2</span>La couche la plus précieuse : vos données internes</h4>
+  <p>Aucun opérateur national ne possède ce que possède votre service. À intégrer progressivement :</p>
+  <ul class="serre">
+    <li>population réellement collectée par secteur ;</li>
+    <li>tonnages par flux, par tournée, par période ;</li>
+    <li>fréquences de collecte et évolution des tournées ;</li>
+    <li>localisation et volumes des PAV et PDR ;</li>
+    <li>coûts, incidents, taux de remplissage ;</li>
+    <li>données de fréquentation touristique et de saisonnalité.</li>
+  </ul>
+  <p>Croisées avec les données Insee, ces données de gestion permettent de calculer des ratios locaux réels (par exemple kg par habitant équivalent, par type de ménage ou par secteur), infiniment plus fiables que des moyennes nationales.</p>
+
+  <h4><span class="rep">13.3</span>Outillage</h4>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Besoin</th><th>Outil</th><th>Remarque</th></tr></thead>
+    <tbody>
+      <tr><td>Manipuler et croiser des données géographiques</td><td>QGIS</td><td>Gratuit, standard dans les collectivités</td></tr>
+      <tr><td>Stocker durablement et interroger</td><td>PostgreSQL / PostGIS</td><td>Utile dès que les volumes dépassent le tableur</td></tr>
+      <tr><td>Géocoder des adresses</td><td>API de la Base Adresse Nationale</td><td>Gratuit, à conserver comme brique d'infrastructure</td></tr>
+      <tr><td>Partager les résultats</td><td>Cartes HTML autonomes</td><td>Aucune installation requise pour les destinataires</td></tr>
+      <tr><td>Analyses statistiques et projections</td><td>Tableur ou Python</td><td>Le tableur suffit pour un premier cycle</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="bloc ncpa">
+    <span class="etiquette">Application NCPA</span>
+    <p>Vous avez déjà la brique « Équipements » : la BPE localisée (1 225 équipements, 38 communes, 7 catégories) est cartographiée et diffusable. C'est une bonne démonstration à montrer en interne — elle rend tangible ce qu'est un socle de données territorial, avant d'engager la discussion sur le reste.</p>
+  </div>
+</section>
+
+<section class="chapitre" id="ch14">
+  <h3><span class="num">14</span>Le tableau de bord prospectif</h3>
+  <p class="accroche">Douze lignes suffisent pour une première version.</p>
+
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Domaine</th><th>Indicateurs</th><th>Horizons</th></tr></thead>
+    <tbody>
+      <tr><td>Population</td><td>Population totale</td><td>2030 / 2040 / 2050</td></tr>
+      <tr><td>Vieillissement</td><td>Part des 65 ans et plus, des 80 ans et plus</td><td>2030 / 2040 / 2050</td></tr>
+      <tr><td>Ménages</td><td>Nombre et taille moyenne</td><td>2030 / 2040 / 2050</td></tr>
+      <tr><td>Logement</td><td>Besoins estimés / construction observée</td><td>2030 / 2040</td></tr>
+      <tr><td>Vacance</td><td>Logements vacants</td><td>2030 / 2040</td></tr>
+      <tr><td>Emploi</td><td>Actifs / emplois locaux</td><td>2030 / 2040</td></tr>
+      <tr><td>Mobilité</td><td>Flux domicile-travail</td><td>2030 / 2040</td></tr>
+      <tr><td>Foncier</td><td>Consommation d'espace</td><td>2030 / 2050</td></tr>
+      <tr><td>Climat</td><td>Exposition aux risques</td><td>2030 / 2050</td></tr>
+      <tr><td>Services</td><td>Population desservie / capacité</td><td>2030 / 2040</td></tr>
+      <tr><td>Déchets</td><td>Tonnage par habitant, par flux</td><td>2030 / 2040</td></tr>
+      <tr><td>Équipements</td><td>Besoins futurs estimés</td><td>2030 / 2040</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4><span class="rep">14.1</span>Ce qui transforme un tableau de bord en outil prospectif</h4>
+  <p>Trois colonnes supplémentaires, à ajouter dès la version 2 :</p>
+  <ul>
+    <li><strong>Hypothèse retenue</strong> : sur quoi repose la valeur projetée.</li>
+    <li><strong>Seuil d'alerte</strong> : à partir de quelle valeur la trajectoire pose problème.</li>
+    <li><strong>Décision associée</strong> : ce qu'on ferait si le seuil était franchi.</li>
+  </ul>
+  <p>Sans ces trois colonnes, l'outil reste descriptif. Avec elles, il devient un dispositif de veille relié à l'action.</p>
+</section>
+
+<!-- ============ PARTIE IV ============ -->
+<div class="partie-ouverture">
+  <div class="lettre">Partie IV</div>
+  <h2>Appliquer</h2>
+  <p>Ce qui rend le territoire de la NCPA particulier, un cas pratique déroulé de bout en bout, et une feuille de route réaliste.</p>
+</div>
+
+<section class="chapitre" id="ch15">
+  <h3><span class="num">15</span>Le profil de la NCPA</h3>
+  <p class="accroche">Des hypothèses de travail à vérifier avec les données, pas des constats établis.</p>
+
+  <div class="bloc piege">
+    <span class="etiquette">Avertissement méthodologique</span>
+    <p>Ce chapitre liste des <strong>hypothèses plausibles</strong> pour un territoire littoral du Calvados, à documenter avec les sources du chapitre 11. Les traiter comme des faits établis reviendrait exactement au biais de confirmation décrit au chapitre 4. La première tâche d'une démarche NCPA est précisément de tester ces hypothèses.</p>
+  </div>
+
+  <h4><span class="rep">15.1</span>Six caractéristiques à documenter en priorité</h4>
+  <div class="grille deux">
+    <div class="fiche bleu">
+      <h6>La saisonnalité</h6>
+      <p>Un territoire littoral vit avec une population qui varie fortement dans l'année. Les équipements, réseaux et services doivent être dimensionnés pour un pic qui ne dure que quelques semaines.<br><br><em>À mesurer :</em> écart population permanente / population présente en été, par commune et par secteur.</p>
+    </div>
+    <div class="fiche bleu">
+      <h6>Les résidences secondaires</h6>
+      <p>Un parc de logements qui peut évoluer indépendamment du nombre d'habitants permanents, avec des effets sur le marché immobilier local et sur l'accès au logement des actifs.<br><br><em>À mesurer :</em> part et évolution des résidences secondaires ; transformations en résidences principales.</p>
+    </div>
+    <div class="fiche bleu">
+      <h6>Le vieillissement</h6>
+      <p>Les territoires littoraux attirent des retraités et voient partir des jeunes actifs. Cela produit un effet de ciseau : besoins de services croissants, ressources humaines locales décroissantes.<br><br><em>À mesurer :</em> pyramide des âges, soldes migratoires par tranche d'âge.</p>
+    </div>
+    <div class="fiche bleu">
+      <h6>Le risque littoral</h6>
+      <p>Submersion marine, érosion côtière, ruissellement, retrait-gonflement des argiles. Ces risques conditionnent les possibilités d'aménagement à 2050.<br><br><em>À mesurer :</em> croisement Géorisques × bâti existant × zonages PLU × projections DRIAS.</p>
+    </div>
+    <div class="fiche bleu">
+      <h6>La polarité et la proximité de Caen</h6>
+      <p>Un territoire partiellement dans l'aire d'influence d'une agglomération : flux domicile-travail sortants, pression résidentielle, dépendance aux services extérieurs.<br><br><em>À mesurer :</em> flux domicile-travail, dépendance aux équipements hors territoire.</p>
+    </div>
+    <div class="fiche bleu">
+      <h6>Le contraste littoral / rétro-littoral</h6>
+      <p>Un même EPCI peut abriter des dynamiques opposées : littoral sous pression, arrière-pays agricole en déprise. Les moyennes intercommunales masquent tout.<br><br><em>À mesurer :</em> tous les indicateurs, déclinés par secteur géographique et non seulement par EPCI.</p>
+    </div>
+  </div>
+
+  <div class="bloc retenir">
+    <span class="etiquette">Conséquence méthodologique</span>
+    <p>Sur ce type de territoire, <strong>l'analyse à l'échelle de l'EPCI seul est trompeuse</strong>. Il faut définir dès le départ deux ou trois secteurs d'analyse infra-communautaires et produire tous les indicateurs à ce niveau.</p>
+  </div>
+</section>
+
+<section class="chapitre" id="ch16">
+  <h3><span class="num">16</span>Cas pratique : les besoins de collecte en 2040</h3>
+  <p class="accroche">Un sujet opérationnel, dans votre champ de compétence, riche en données internes.</p>
+
+  <h4><span class="rep">16.1</span>La question de décision</h4>
+  <blockquote>Quelle évolution des besoins en collecte des déchets à l'horizon 2040, et où faut-il commencer à agir dès maintenant ?</blockquote>
+
+  <h4><span class="rep">16.2</span>La chaîne causale complète</h4>
+  <div class="chaine">
+    <span class="maillon">Population actuelle</span><span class="fleche">→</span>
+    <span class="maillon">Projection démographique</span><span class="fleche">→</span>
+    <span class="maillon">Structure par âge</span><span class="fleche">→</span>
+    <span class="maillon">Nombre de ménages</span><span class="fleche">→</span>
+    <span class="maillon">Type de logements</span><span class="fleche">→</span>
+    <span class="maillon">Résidences principales / secondaires</span><span class="fleche">→</span>
+    <span class="maillon">Population saisonnière</span><span class="fleche">→</span>
+    <span class="maillon">Production théorique de déchets</span><span class="fleche">→</span>
+    <span class="maillon">Répartition spatiale</span><span class="fleche">→</span>
+    <span class="maillon">Besoins en équipements de collecte</span>
+  </div>
+
+  <h4><span class="rep">16.3</span>Les données à mobiliser, maillon par maillon</h4>
+  <div class="tableau">
+  <table>
+    <thead><tr><th>Maillon</th><th>Source</th><th>Difficulté</th></tr></thead>
+    <tbody>
+      <tr><td>Population actuelle par secteur</td><td>Insee, recensement, données carroyées</td><td>Faible</td></tr>
+      <tr><td>Projection démographique</td><td>Insee Omphale + extrapolation locale</td><td>Moyenne — disponibilité selon la maille</td></tr>
+      <tr><td>Structure par âge</td><td>Insee</td><td>Faible</td></tr>
+      <tr><td>Nombre et taille des ménages</td><td>Insee + projections de ménages</td><td>Moyenne</td></tr>
+      <tr><td>Parc de logements, résidences secondaires</td><td>Insee, Fichiers fonciers, LOVAC</td><td>Moyenne</td></tr>
+      <tr><td>Population saisonnière</td><td>Données de fréquentation, taxe de séjour, données internes</td><td>Élevée — souvent à estimer</td></tr>
+      <tr><td>Ratios de production par type de ménage</td><td>Données internes de tonnage + SINOE/ADEME pour comparaison</td><td>Moyenne — c'est votre valeur ajoutée</td></tr>
+      <tr><td>Répartition spatiale et desserte</td><td>Vos données PAV/PDR + BAN + BD TOPO</td><td>Faible — vous les détenez</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4><span class="rep">16.4</span>Ce que la démarche permet d'identifier</h4>
+  <ul>
+    <li>les secteurs où la population va augmenter ;</li>
+    <li>les secteurs où elle va diminuer ;</li>
+    <li>les secteurs où les ménages vont se multiplier sans forte hausse de population — donc où la production de déchets par habitant augmente mécaniquement ;</li>
+    <li>les secteurs où la population vieillira fortement (mobilité réduite, distance d'apport volontaire acceptable plus courte) ;</li>
+    <li>les secteurs soumis à une forte saisonnalité ;</li>
+    <li>les secteurs nécessitant de nouveaux points de collecte ;</li>
+    <li>les secteurs où les équipements actuels pourraient devenir surdimensionnés.</li>
+  </ul>
+
+  <div class="bloc retenir">
+    <span class="etiquette">Le basculement à opérer</span>
+    <p>On passe de <em>« nous installons un équipement parce que la demande existe »</em> à <em>« nous identifions aujourd'hui les secteurs dans lesquels la demande risque d'apparaître demain »</em>. C'est précisément là que la prospective devient utile à l'action opérationnelle.</p>
+  </div>
+
+  <h4><span class="rep">16.5</span>Trois hypothèses contrastées à tester</h4>
+  <div class="grille trois">
+    <div class="fiche"><h6>Hypothèse démographique</h6><p>Attractivité forte / stable / en repli. Effet direct sur le nombre de points de collecte nécessaires.</p></div>
+    <div class="fiche"><h6>Hypothèse résidentielle</h6><p>Transformation croissante des résidences secondaires en résidences principales, ou au contraire renforcement du caractère secondaire. Effet majeur sur la saisonnalité des flux.</p></div>
+    <div class="fiche"><h6>Hypothèse réglementaire</h6><p>Évolution des obligations de tri, de la tarification incitative, du financement. Effet sur les volumes par flux et sur les coûts.</p></div>
+  </div>
+  <p>Trois variables à deux ou trois modalités produisent un nombre gérable de combinaisons. On en retient trois ou quatre cohérentes, on les raconte, et on teste le programme d'investissement dans chacune.</p>
+</section>
+
+<section class="chapitre" id="ch17">
+  <h3><span class="num">17</span>Feuille de route</h3>
+  <p class="accroche">Commencer petit, sur un enjeu prioritaire, et installer une méthode réutilisable.</p>
+
+  <blockquote>Décider aujourd'hui ce que nous voulons être capables de décider demain.</blockquote>
+
+  <h4><span class="rep">17.1</span>Premier cycle : 90 jours</h4>
+  <ol class="etapes">
+    <li>
+      <span class="titre-etape">Jours 0 à 30 — Cadrer</span>
+      Choisir un enjeu unique (habitat et vieillissement, accès aux services, eau et adaptation climatique, mobilités, zones d'activité, ou besoins de collecte). Obtenir un mandat : un élu référent, une direction pilote, un horizon (par exemple 2040), et l'information des communes. Remplir la fiche de cadrage du chapitre 5.
+    </li>
+    <li>
+      <span class="titre-etape">Jours 30 à 60 — Observer</span>
+      Constituer le socle minimal de données sur l'enjeu retenu (5 à 8 sources maximum). Produire une rétrospective chiffrée 2010 → aujourd'hui, comparée au Calvados et à la Normandie. Mener 8 à 12 entretiens de grands témoins. Documenter chaque donnée.
+    </li>
+    <li>
+      <span class="titre-etape">Jours 60 à 90 — Explorer et restituer</span>
+      Organiser un ou deux ateliers prospectifs. Identifier tendances lourdes, incertitudes majeures et ruptures possibles. Rédiger trois scénarios contrastés et une note d'enjeux de dix pages. Restituer en bureau communautaire avec une question explicite : quelles actions sont utiles dans les trois scénarios ?
+    </li>
+  </ol>
+
+  <h4><span class="rep">17.2</span>Les douze mois suivants</h4>
+  <ul>
+    <li><strong>Mois 4 à 6</strong> — Élargir le socle de données aux autres familles thématiques ; formaliser les huit tables du chapitre 13.</li>
+    <li><strong>Mois 6 à 9</strong> — Étendre la méthode à un deuxième enjeu, en réutilisant le cadre. C'est la répétition qui installe la capacité, pas l'ampleur du premier exercice.</li>
+    <li><strong>Mois 9 à 12</strong> — Mettre en place le tableau de bord avec seuils d'alerte et décisions associées ; caler une revue annuelle des hypothèses.</li>
+  </ul>
+
+  <h4><span class="rep">17.3</span>Conditions de réussite</h4>
+  <div class="grille deux">
+    <div class="fiche"><h6>Un mandat politique explicite</h6><p>Sans élu référent identifié, la démarche reste un travail de service qui ne rencontrera jamais la décision.</p></div>
+    <div class="fiche"><h6>Un périmètre modeste</h6><p>Un enjeu, un horizon, trois scénarios. L'ambition se met dans la qualité, pas dans l'étendue.</p></div>
+    <div class="fiche"><h6>Les communes associées tôt</h6><p>Une prospective intercommunale perçue comme descendante est rejetée, quelle que soit sa qualité technique.</p></div>
+    <div class="fiche"><h6>Un livrable court</h6><p>Dix pages lues valent mieux que cent pages archivées. Le rapport n'est pas le résultat : la décision l'est.</p></div>
+  </div>
+
+  <div class="bloc action">
+    <span class="etiquette">Trois actions possibles cette semaine</span>
+    <ol class="serre">
+      <li>Recenser les hypothèses d'avenir déjà écrites dans les documents existants de la NCPA et vérifier leur cohérence entre elles.</li>
+      <li>Télécharger les séries Insee 2010-2025 sur population, ménages et logements, aux 38 communes, et calculer les taux d'évolution annuels.</li>
+      <li>Rédiger une note d'une page à la direction générale : la question de décision proposée, l'horizon, le temps agent nécessaire, et le livrable attendu à 90 jours.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ANNEXES ============ -->
+<div class="partie-ouverture">
+  <div class="lettre">Annexes</div>
+  <h2>Glossaire et ressources</h2>
+  <p>Pour retrouver rapidement une définition ou une source.</p>
+</div>
+
+<section class="chapitre" id="glossaire">
+  <h3><span class="num">A</span>Glossaire</h3>
+
+  <dl class="glossaire">
+    <dt>Abaque de Régnier</dt>
+    <dd>Méthode de consultation par vote coloré permettant de visualiser rapidement consensus, divergences et controverses au sein d'un groupe.</dd>
+
+    <dt>Analyse morphologique</dt>
+    <dd>Technique consistant à décomposer un système en dimensions, à lister les hypothèses possibles pour chacune, puis à combiner ces hypothèses pour balayer le champ des futurs possibles.</dd>
+
+    <dt>Analyse structurelle (Micmac)</dt>
+    <dd>Méthode d'identification des variables clés d'un système à partir de leurs influences et dépendances mutuelles.</dd>
+
+    <dt>Attitude prospective</dt>
+    <dd>Posture intellectuelle définie par Gaston Berger : voir loin, voir large, analyser en profondeur, prendre des risques, penser à l'homme.</dd>
+
+    <dt>BPE</dt>
+    <dd>Base permanente des équipements de l'Insee : recensement localisé de plus de 180 types d'équipements et services.</dd>
+
+    <dt>DVF</dt>
+    <dd>Demandes de valeurs foncières : base des transactions immobilières et foncières. La version DVF+ du Cerema est structurée et géolocalisée.</dd>
+
+    <dt>Germe de changement</dt>
+    <dd>Phénomène émergent encore marginal, susceptible de devenir structurant.</dd>
+
+    <dt>Grammaire prospective</dt>
+    <dd>Ensemble des notions permettant de décrire un futur : tendances lourdes, germes de changement, ruptures, invariants, incertitudes.</dd>
+
+    <dt>Indicateur de bascule</dt>
+    <dd>Indicateur suivi dans le temps signalant que le territoire s'engage dans un scénario plutôt qu'un autre.</dd>
+
+    <dt>LOVAC</dt>
+    <dd>Base des logements vacants, diffusée par le Cerema.</dd>
+
+    <dt>Mactor</dt>
+    <dd>Méthode d'analyse du jeu d'acteurs : objectifs, rapports de force, convergences et divergences.</dd>
+
+    <dt>Omphale</dt>
+    <dd>Modèle de projection démographique de l'Insee, permettant de tester plusieurs jeux d'hypothèses de fécondité, mortalité et migrations.</dd>
+
+    <dt>Prospective exploratoire</dt>
+    <dd>Démarche partant du présent pour explorer les futurs possibles. Répond à « que peut-il advenir ? ».</dd>
+
+    <dt>Prospective normative</dt>
+    <dd>Démarche partant d'un futur souhaité pour identifier le chemin qui y mène. Répond à « que voulons-nous ? ».</dd>
+
+    <dt>Rupture</dt>
+    <dd>Discontinuité, redoutée ou souhaitée, modifiant les règles du jeu d'un système.</dd>
+
+    <dt>Signal faible</dt>
+    <dd>Information ténue, peu visible, annonciatrice possible d'une rupture.</dd>
+
+    <dt>Tendance lourde</dt>
+    <dd>Mouvement de fond déjà à l'œuvre, difficile à infléchir à court terme.</dd>
+
+    <dt>Triangle grec</dt>
+    <dd>Formule de Michel Godet articulant anticipation (bleu), action (vert) et appropriation (jaune) : sans appropriation, l'anticipation ne devient jamais action.</dd>
+
+    <dt>Variable clé</dt>
+    <dd>Facteur à la fois très influent sur le système territorial et fortement incertain. C'est sur ces variables que se construisent les scénarios.</dd>
+  </dl>
+</section>
+
+<section class="chapitre" id="ressources">
+  <h3><span class="num">B</span>Sources et bibliographie</h3>
+
+  <h4>Références méthodologiques</h4>
+  <ul>
+    <li>Philippe Durance, Michel Godet, Philippe Mirénowicz, Vincent Pacini, <em>La prospective territoriale — Pour quoi faire ? Comment faire ?</em>, Cahiers du LIPSOR, série Recherche n°7, 2007.</li>
+    <li>Hugues de Jouvenel, <em>La démarche prospective — Un bref guide méthodologique</em>, Futuribles, 1999, mis à jour 2002.</li>
+    <li>Gaston Berger, « L'attitude prospective », revue <em>Prospective</em>, n°1, 1958.</li>
+    <li>Michel Godet, <em>Manuel de prospective stratégique</em>, Dunod.</li>
+    <li>Méthodes et logiciels de prospective stratégique (Micmac, Mactor, Morphol, Multipol) — diffusion libre via laprospective.fr.</li>
+  </ul>
+
+  <h4>Portails de données</h4>
+  <ul class="serre">
+    <li>Insee — <a href="https://www.insee.fr">insee.fr</a> (données locales, Omphale, Filosofi, BPE, SIRENE)</li>
+    <li>Observatoire des territoires — <a href="https://www.observatoire-des-territoires.gouv.fr">observatoire-des-territoires.gouv.fr</a></li>
+    <li>data.gouv.fr — <a href="https://www.data.gouv.fr">data.gouv.fr</a></li>
+    <li>IGN Géoservices — <a href="https://geoservices.ign.fr">geoservices.ign.fr</a></li>
+    <li>Base Adresse Nationale — <a href="https://adresse.data.gouv.fr">adresse.data.gouv.fr</a></li>
+    <li>Cadastre — <a href="https://cadastre.data.gouv.fr">cadastre.data.gouv.fr</a></li>
+    <li>Géoportail de l'urbanisme — <a href="https://www.geoportail-urbanisme.gouv.fr">geoportail-urbanisme.gouv.fr</a></li>
+    <li>Datafoncier Cerema — <a href="https://datafoncier.cerema.fr">datafoncier.cerema.fr</a></li>
+    <li>Portail de l'artificialisation — <a href="https://artificialisation.developpement-durable.gouv.fr">artificialisation.developpement-durable.gouv.fr</a></li>
+    <li>Géorisques — <a href="https://www.georisques.gouv.fr">georisques.gouv.fr</a></li>
+    <li>DRIAS — <a href="https://www.drias-climat.fr">drias-climat.fr</a></li>
+    <li>SDES — <a href="https://www.statistiques.developpement-durable.gouv.fr">statistiques.developpement-durable.gouv.fr</a></li>
+    <li>data ADEME — <a href="https://data.ademe.fr">data.ademe.fr</a></li>
+    <li>SINOE — <a href="https://www.sinoe.org">sinoe.org</a></li>
+    <li>Transport.data.gouv.fr — <a href="https://transport.data.gouv.fr">transport.data.gouv.fr</a></li>
+    <li>FINESS — <a href="https://finess.esante.gouv.fr">finess.esante.gouv.fr</a></li>
+    <li>France Travail open data — <a href="https://www.francetravail.org/opendata/">francetravail.org/opendata</a></li>
+    <li>Agreste — <a href="https://agreste.agriculture.gouv.fr">agreste.agriculture.gouv.fr</a></li>
+    <li>BANATIC — <a href="https://www.banatic.interieur.gouv.fr">banatic.interieur.gouv.fr</a></li>
+    <li>Enedis open data — <a href="https://opendata.enedis.fr">opendata.enedis.fr</a></li>
+    <li>RTE open data — <a href="https://opendata.rte-france.com">opendata.rte-france.com</a></li>
+  </ul>
+
+  <footer class="pied">
+    Guide d'acculturation à la prospective territoriale · Communauté de communes Normandie Cabourg Pays d'Auge<br>
+    Document de travail interne — version 1, août 2026. Élaboré à partir de la note de cadrage « Défricher la prospective territoriale par la donnée », de la cartographie des sources, du support de cadrage NCPA, et des références méthodologiques citées ci-dessus.<br>
+    Les hypothèses relatives au territoire présentées au chapitre 15 sont à vérifier par les données avant toute diffusion externe.
+  </footer>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  // Barre d'échelle : progression de lecture
+  var jauge = document.getElementById('jauge');
+  function majJauge(){
+    var h = document.documentElement;
+    var total = h.scrollHeight - h.clientHeight;
+    var p = total > 0 ? (h.scrollTop / total) * 100 : 0;
+    jauge.style.width = p + '%';
+  }
+  window.addEventListener('scroll', majJauge, {passive:true});
+  window.addEventListener('resize', majJauge);
+  majJauge();
+
+  // Menu mobile
+  var bouton = document.getElementById('bouton-nav');
+  var nav = document.getElementById('sommaire');
+  bouton.addEventListener('click', function(){
+    var ouvert = nav.classList.toggle('ouvert');
+    bouton.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+    bouton.textContent = ouvert ? 'Fermer' : 'Sommaire';
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A' && window.innerWidth <= 760){
+      nav.classList.remove('ouvert');
+      bouton.setAttribute('aria-expanded','false');
+      bouton.textContent = 'Sommaire';
+    }
+  });
+
+  // Surlignage du chapitre courant
+  var liens = {};
+  Array.prototype.forEach.call(nav.querySelectorAll('a'), function(a){
+    liens[a.getAttribute('href').slice(1)] = a;
+  });
+  var sections = document.querySelectorAll('section.chapitre');
+  var observateur = new IntersectionObserver(function(entrees){
+    entrees.forEach(function(entree){
+      if(entree.isIntersecting){
+        Array.prototype.forEach.call(nav.querySelectorAll('a'), function(a){a.classList.remove('actif');});
+        var lien = liens[entree.target.id];
+        if(lien){ lien.classList.add('actif'); }
+      }
+    });
+  }, {rootMargin:'-80px 0px -70% 0px', threshold:0});
+  Array.prototype.forEach.call(sections, function(s){ observateur.observe(s); });
+})();
+</script>
+
+</body>
+</html>
